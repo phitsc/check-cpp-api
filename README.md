@@ -12,8 +12,9 @@
 
 4. Run the make script.
 
-    python3 make.py
-
+```shell
+python3 make.py
+```
 
 ## Building with Docker
 
@@ -21,12 +22,15 @@
 
 2. Create the *libtooling* docker image for building Clang tools.
 
-    sudo docker build -t libtooling .
+```shell
+sudo docker build -t libtooling .
+```
 
 3. Run the make script.
 
-    python3 make.py
-
+```shell
+python3 make.py
+```
 
 
 
