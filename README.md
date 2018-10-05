@@ -1,5 +1,7 @@
 # check-cpp-api
 
+[![Build Status](https://travis-ci.com/phitsc/check-cpp-api.svg?token=RqqkynutptY9gpoo5YZP&branch=master)](https://travis-ci.com/phitsc/check-cpp-api)
+
 ## Building Clang on Linux
 
 1. Follow the build instructions in https://clang.llvm.org/get_started.html . Make sure to include step 4 'extra Clang tools'.
