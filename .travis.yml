@@ -7,4 +7,4 @@ services:
 
 before_install:
   - docker build -t libtooling - < Docker/Travis.Dockerfile
-  - docker run --name libtooling_build -v "${TRAVIS_BUILD_DIR}:/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api" libtooling /root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/docker-build.sh
+  - docker run --name libtooling_build -v "${TRAVIS_BUILD_DIR}:/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api" libtooling /root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/Docker/docker-build.sh
