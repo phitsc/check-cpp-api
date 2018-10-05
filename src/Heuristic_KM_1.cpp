@@ -59,10 +59,10 @@ CheckResult checkParamCount(const clang::FunctionDecl& functionDecl, const Optio
 
 CheckResult checkConsecutiveParams(const clang::FunctionDecl& functionDecl, const Options& options)
 {
-    const auto limit = boost::get<size_t>(options["km-1-3-limit"].value());
+    const auto limit = boost::get<int>(options["km-1-3-limit"].value());
 
     auto check = [limit](const auto& params) -> boost::optional<std::string> {
-        if (params.size() > limit) {
+        if ((int)params.size() > limit) {
             return std::to_string(params.size()) + " consecutive parameters of type " + params.back()->getOriginalType().getAsString();
         } else {
             return {};

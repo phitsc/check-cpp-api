@@ -8,6 +8,8 @@
 using namespace clang;
 using namespace clang::ast_matchers;
 
+#include <fstream>
+#include <memory>
 #include <vector>
 
 template<typename T>
@@ -24,6 +26,7 @@ class HeuristicsCheckAction : public MatchFinder::MatchCallback
 {
   public:
     HeuristicsCheckAction(Options options);
+    ~HeuristicsCheckAction();
 
     auto matcher() const
     {
@@ -35,4 +38,6 @@ class HeuristicsCheckAction : public MatchFinder::MatchCallback
 private:
     std::vector<Heuristic> m_heuristics;
     Options m_options;
+
+    std::unique_ptr<std::ofstream> m_file;
 };

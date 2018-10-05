@@ -4,7 +4,7 @@
 #include <string>
 #include <boost/variant.hpp>
 
-using OptionValue = boost::variant<std::string, size_t>;
+using OptionValue = boost::variant<bool, int, std::string>;
 
 class Option
 {

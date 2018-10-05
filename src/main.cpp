@@ -36,6 +36,13 @@ static cl::OptionCategory optionCategory("check-cpp-api options");
 // static cl::extrahelp MoreHelp("\nMore help text...\n");
 
 // clang-format off
+static cl::opt<bool> json("json", cl::desc(R"(
+Export violations to JSON file
+)"),
+    cl::init(false),
+    cl::cat(optionCategory));
+
+
 static cl::opt<int> km13limit("km-1-3-limit", cl::desc(R"(
 Consecutive parameter type limit
 )"),
@@ -59,6 +66,7 @@ int main(int argc, const char** argv)
     // tool.appendArgumentsAdjuster(getInsertArgumentAdjuster("-Wno-gnu-include-next"));
 
     Options options;
+    options.add({ "json", "Export violations to JSON file", json });
     options.add({ "km-1-3-limit", "Consecutive parameter type limit", km13limit.getNumOccurrences() > 0 ? km13limit : 3 });
 
     MatchFinder matchFinder;
