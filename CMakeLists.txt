@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.11)
 
 set(LLVM_LINK_COMPONENTS support)
 
-set(PROJECT_NAME check-app-api)
+set(PROJECT_NAME check-cpp-api)
 
 add_clang_executable(${PROJECT_NAME}
 	src/Heuristic_KM_1.cpp
