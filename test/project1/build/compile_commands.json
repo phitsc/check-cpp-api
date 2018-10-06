@@ -1,13 +1,13 @@
 [
 {
-  "directory": "/mnt/c/Users/tschanp1/github/check-cpp-api/test/project1/build",
-  "command": "/usr/bin/c++      -o CMakeFiles/Project1.dir/src/main.cpp.o -c /mnt/c/Users/tschanp1/github/check-cpp-api/test/project1/src/main.cpp",
-  "file": "/mnt/c/Users/tschanp1/github/check-cpp-api/test/project1/src/main.cpp"
+  "directory": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/Project1.dir/src/main.cpp.o -c /root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/main.cpp",
+  "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/main.cpp"
 },
 
 {
-  "directory": "/mnt/c/Users/tschanp1/github/check-cpp-api/test/project1/build",
-  "command": "/usr/bin/c++      -o CMakeFiles/Project1.dir/src/TestClass.cpp.o -c /mnt/c/Users/tschanp1/github/check-cpp-api/test/project1/src/TestClass.cpp",
-  "file": "/mnt/c/Users/tschanp1/github/check-cpp-api/test/project1/src/TestClass.cpp"
+  "directory": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/Project1.dir/src/TestClass.cpp.o -c /root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.cpp",
+  "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.cpp"
 }
 ]
