@@ -60,7 +60,7 @@ HeuristicsCheckAction::HeuristicsCheckAction(Options options)
     m_heuristics.push_back(createHeuristic_KM_1());
 
     if (boost::get<bool>(m_options["json"].value())) {
-        const auto filePath = fs::current_path() / "check_cpp_api_results.json";
+        const auto filePath = fs::current_path() / "check-cpp-api_results.json";
         m_file = std::make_unique<std::ofstream>(filePath.c_str());
 
         if (m_file->is_open()) {

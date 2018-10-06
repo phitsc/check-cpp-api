@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
+set -ex
+
 project_name="check-cpp-api"
 
-llvm_src_dir="/root/clang-llvm"
+llvm_root_dir="/root/clang-llvm"
 
-if [ ! -d "${llvm_src_dir}/llvm/tools/clang/tools/extra" ]
+if [ ! -d "${llvm_root_dir}/llvm/tools/clang/tools/extra" ]
 then
     echo "Run this script only within a libtooling docker container."
     exit 1
 fi
 
-if [ ! -d "${llvm_src_dir}/build" ]
+if [ ! -d "${llvm_root_dir}/build" ]
 then
-    mkdir ${llvm_src_dir}/build
+    mkdir ${llvm_root_dir}/build
 fi
 
-cd ${llvm_src_dir}/build
-
-set -e
+cd ${llvm_root_dir}/build
 
 # this script assumes we are in a sibling directory of llvm,
 # e.g. build
