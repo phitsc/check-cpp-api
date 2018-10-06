@@ -5,6 +5,7 @@ set -ex
 project_name="check-cpp-api"
 
 llvm_root_dir="/root/clang-llvm"
+llvm_build_dir=${llvm_root_dir}/build
 
 if [ ! -d "${llvm_root_dir}/llvm/tools/clang/tools/extra" ]
 then
@@ -12,12 +13,12 @@ then
     exit 1
 fi
 
-if [ ! -d "${llvm_root_dir}/build" ]
+if [ ! -d "${llvm_build_dir}" ]
 then
-    mkdir ${llvm_root_dir}/build
+    mkdir ${llvm_build_dir}
 fi
 
-cd ${llvm_root_dir}/build
+cd ${llvm_build_dir}
 
 # this script assumes we are in a sibling directory of llvm,
 # e.g. build
