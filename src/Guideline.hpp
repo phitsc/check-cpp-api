@@ -32,7 +32,7 @@ public:
 
     CheckResult check(const clang::FunctionDecl& functionDecl, const Options& options) const
     {
-        return m_check(functionDecl, options);
+        return CheckResult(m_check(functionDecl, options), m_id);
     }
 
 private:

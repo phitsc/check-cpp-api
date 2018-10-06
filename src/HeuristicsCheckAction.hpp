@@ -40,4 +40,5 @@ private:
     Options m_options;
 
     std::unique_ptr<std::ofstream> m_file;
+    bool m_isFirstRecord = true;
 };

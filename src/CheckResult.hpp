@@ -12,6 +12,12 @@ public:
         , m_msg(msg)
     {}
 
+    CheckResult(const CheckResult& other, int guidelineId)
+        : m_loc(other.loc())
+        , m_msg(other.msg())
+        , m_guidelineId(guidelineId)
+    {}
+
     const clang::SourceLocation& loc() const
     {
         return m_loc;
@@ -22,6 +28,11 @@ public:
         return m_msg;
     }
 
+    int guidelineId() const
+    {
+        return m_guidelineId;
+    }
+
     bool failure() const
     {
         return !m_msg.empty();
@@ -30,4 +41,5 @@ public:
 private:
     clang::SourceLocation m_loc;
     std::string m_msg;
+    int m_guidelineId = 0;
 };
