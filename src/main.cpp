@@ -31,24 +31,22 @@ namespace boost
 
 namespace {
 
-static cl::OptionCategory optionCategory("check-cpp-api options");
-// static cl::extrahelp CommonHelp(CommonOptionsParser::HelpMessage);
-// static cl::extrahelp MoreHelp("\nMore help text...\n");
+static cl::OptionCategory optionCategory("check-cpp-api Options");
 
 // clang-format off
-static cl::opt<bool> json("json", cl::desc(R"(
-Export violations to JSON file
-)"),
+static cl::opt<bool> json("json",
+    cl::desc(R"(Export violations to JSON file)"),
     cl::init(false),
     cl::cat(optionCategory));
 
-
-static cl::opt<int> km13limit("km-1-3-limit", cl::desc(R"(
-Consecutive parameter type limit
-)"),
+static cl::opt<int> km13limit("km-1-3-limit",
+    cl::desc(R"(Consecutive parameter type limit (default: 3))"),
     cl::init(3),
     cl::cat(optionCategory));
 // clang-format off
+
+static cl::extrahelp CommonHelp(CommonOptionsParser::HelpMessage);
+// static cl::extrahelp MoreHelp("\nMore help text...\n");
 
 } // namespace
 
@@ -66,8 +64,8 @@ int main(int argc, const char** argv)
     // tool.appendArgumentsAdjuster(getInsertArgumentAdjuster("-Wno-gnu-include-next"));
 
     Options options;
-    options.add({ "json", "Export violations to JSON file", json });
-    options.add({ "km-1-3-limit", "Consecutive parameter type limit", km13limit.getNumOccurrences() > 0 ? km13limit : 3 });
+    options.add({ json.ArgStr, json.HelpStr, json });
+    options.add({ km13limit.ArgStr, km13limit.HelpStr, km13limit.getNumOccurrences() > 0 ? km13limit : 3 });
 
     MatchFinder matchFinder;
 
