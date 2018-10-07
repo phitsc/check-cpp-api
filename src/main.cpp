@@ -39,14 +39,37 @@ static cl::opt<bool> json("json",
     cl::init(false),
     cl::cat(optionCategory));
 
-static cl::opt<int> km13limit("km-1-3-limit",
+constexpr const int km_1_1_init = 25;
+static cl::opt<int> km_1_1_limit("km-1-1-limit",
+    cl::desc(R"(Function name length limit (default: 25))"),
+    cl::init(km_1_1_init),
+    cl::cat(optionCategory));
+
+constexpr const int km_1_2_init = 5;
+static cl::opt<int> km_1_2_limit("km-1-2-limit",
+    cl::desc(R"(Parameter count limit (default: 5))"),
+    cl::init(km_1_2_init),
+    cl::cat(optionCategory));
+
+constexpr const int km_1_3_init = 3;
+static cl::opt<int> km_1_3_limit("km-1-3-limit",
     cl::desc(R"(Consecutive parameter type limit (default: 3))"),
-    cl::init(3),
+    cl::init(km_1_3_init),
     cl::cat(optionCategory));
 // clang-format off
 
 static cl::extrahelp CommonHelp(CommonOptionsParser::HelpMessage);
 // static cl::extrahelp MoreHelp("\nMore help text...\n");
+
+template<typename T>
+void addOpt(Options& opts, const T& opt, int optInit = -1)
+{
+    if (optInit == -1) {
+        opts.add({ opt.ArgStr, opt.HelpStr, opt });
+    } else {
+        opts.add({ opt.ArgStr, opt.HelpStr, opt.getNumOccurrences() > 0 ? opt : optInit });
+    }
+}
 
 } // namespace
 
@@ -64,8 +87,10 @@ int main(int argc, const char** argv)
     // tool.appendArgumentsAdjuster(getInsertArgumentAdjuster("-Wno-gnu-include-next"));
 
     Options options;
-    options.add({ json.ArgStr, json.HelpStr, json });
-    options.add({ km13limit.ArgStr, km13limit.HelpStr, km13limit.getNumOccurrences() > 0 ? km13limit : 3 });
+    addOpt(options, json);
+    addOpt(options, km_1_1_limit, km_1_1_init);
+    addOpt(options, km_1_2_limit, km_1_2_init);
+    addOpt(options, km_1_3_limit, km_1_3_init);
 
     MatchFinder matchFinder;
 

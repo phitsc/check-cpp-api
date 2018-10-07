@@ -27,12 +27,12 @@ clang::SourceLocation loc(const clang::FunctionDecl& functionDecl)
 
 CheckResult checkFunctionNameLength(const clang::FunctionDecl& functionDecl, const Options& options)
 {
-    const size_t limit = 25;
+    const auto limit = boost::get<int>(options["km-1-1-limit"].value());
 
     const auto name = functionDecl.getNameInfo().getAsString();
 
         // ignore operators
-    if (name.length() > limit && name.find("operator ") == std::string::npos) {
+    if ((int)name.length() > limit && name.find("operator ") == std::string::npos) {
         auto methodDecl = clang::dyn_cast<clang::CXXMethodDecl>(&functionDecl);
 
             // also ignore generated methods
@@ -47,9 +47,9 @@ CheckResult checkFunctionNameLength(const clang::FunctionDecl& functionDecl, con
 
 CheckResult checkParamCount(const clang::FunctionDecl& functionDecl, const Options& options)
 {
-    const size_t limit = 5;
+    const auto limit = boost::get<int>(options["km-1-2-limit"].value());
 
-    if (functionDecl.parameters().size() > limit) {
+    if ((int)functionDecl.parameters().size() > limit) {
         return { loc(functionDecl), std::to_string(functionDecl.parameters().size()) + " parameters" };
     } else {
         return {};
