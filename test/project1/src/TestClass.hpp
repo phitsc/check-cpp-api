@@ -4,6 +4,13 @@ class TestClass
 {
 public:
 
+    // KCE-1-1
+    void sendMsg();
+    void getDesc();
+    void addLoc();
+    void msg();
+    void msgDigest(); // this will currently not be caught
+
     // KM-1-1
     void shortfn();
     void normal_length();
@@ -24,6 +31,4 @@ public:
     void sixConsArgsBroken(int, int, int, double, int, int);
     void twiceFiveConsArgs(int, int, int, int, int,
         double, double, double, double, double);
-
-
 };

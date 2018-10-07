@@ -1,3 +1,4 @@
+#include "Helpers.hpp"
 #include "Heuristics.hpp"
 #include "Options.hpp"
 
@@ -8,22 +9,6 @@
 
 namespace
 {
-
-
-void append(std::string& dest, const std::string& src, const std::string& divider = ". ")
-{
-    if (!dest.empty()) {
-        dest += divider;
-    }
-
-    dest += src;
-}
-
-
-clang::SourceLocation loc(const clang::FunctionDecl& functionDecl)
-{
-    return functionDecl.getSourceRange().getBegin();
-}
 
 
 CheckResult checkFunctionNameLength(const clang::FunctionDecl& functionDecl, const Options& options)
