@@ -9,10 +9,10 @@
 namespace
 {
 
-void append(std::string& dest, const std::string& src)
+void append(std::string& dest, const std::string& src, const std::string& divider = ". ")
 {
     if (!dest.empty()) {
-        dest += ". ";
+        dest += divider;
     }
 
     dest += src;
