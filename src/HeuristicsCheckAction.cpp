@@ -63,8 +63,10 @@ HeuristicsCheckAction::HeuristicsCheckAction(Options options)
         const auto filePath = fs::current_path() / "check-cpp-api_results.json";
         m_file = std::make_unique<std::ofstream>(filePath.c_str());
 
-        if (m_file->is_open()) {
+        if (m_file && m_file->is_open()) {
             *m_file << "{\n";
+        } else {
+            llvm::errs() << "Error: failed to create " << filePath << "\n";
         }
     }
 }
@@ -72,7 +74,7 @@ HeuristicsCheckAction::HeuristicsCheckAction(Options options)
 
 HeuristicsCheckAction::~HeuristicsCheckAction()
 {
-    if (m_file->is_open()) {
+    if (m_file && m_file->is_open()) {
         *m_file << "\n}";
     }
 }
