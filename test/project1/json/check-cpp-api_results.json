@@ -1,38 +1,45 @@
 {
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "line": 8,
+    "heuristic": "KCE-1",
+    "guideline": 1,
+    "message": "abbreviation"
+  },
+  {
+    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "line": 9,
+    "heuristic": "KCE-1",
+    "guideline": 1,
+    "message": "abbreviation"
+  },
+  {
+    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
     "line": 10,
+    "heuristic": "KCE-1",
+    "guideline": 1,
+    "message": "abbreviation"
+  },
+  {
+    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "line": 11,
+    "heuristic": "KCE-1",
+    "guideline": 1,
+    "message": "abbreviation"
+  },
+  {
+    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "line": 17,
     "heuristic": "KM-1",
     "guideline": 1,
     "message": "long function name"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 16,
-    "heuristic": "KM-1",
-    "guideline": 2,
-    "message": "6 parameters"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 17,
-    "heuristic": "KM-1",
-    "guideline": 2,
-    "message": "6 parameters"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 22,
-    "heuristic": "KM-1",
-    "guideline": 3,
-    "message": "4 consecutive parameters of type int"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
     "line": 23,
     "heuristic": "KM-1",
-    "guideline": 3,
-    "message": "5 consecutive parameters of type int"
+    "guideline": 2,
+    "message": "6 parameters"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
@@ -43,14 +50,35 @@
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 25,
+    "line": 29,
+    "heuristic": "KM-1",
+    "guideline": 3,
+    "message": "4 consecutive parameters of type int"
+  },
+  {
+    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "line": 30,
+    "heuristic": "KM-1",
+    "guideline": 3,
+    "message": "5 consecutive parameters of type int"
+  },
+  {
+    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "line": 31,
+    "heuristic": "KM-1",
+    "guideline": 2,
+    "message": "6 parameters"
+  },
+  {
+    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "line": 32,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "10 parameters"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 25,
+    "line": 32,
     "heuristic": "KM-1",
     "guideline": 3,
     "message": "5 consecutive parameters of type int. 5 consecutive parameters of type double"
