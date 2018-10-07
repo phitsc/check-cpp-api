@@ -18,7 +18,7 @@ void printToConsole(
         if (!onlyUserCode || sm.getFileCharacteristic(fc.loc()) == clang::SrcMgr::C_User) {
             llvm::outs()
                 << sm.getFilename(fc.loc()) << ":" << sm.getSpellingLineNumber(fc.loc()) << ": "
-                << heuristic.id() << ": " << fc.msg() << "\n";
+                << heuristic.id() << "-" << fc.guidelineId() << ": " << fc.msg() << "\n";
         }
     }
 }
