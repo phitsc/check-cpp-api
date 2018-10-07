@@ -9,6 +9,7 @@
 namespace
 {
 
+
 void append(std::string& dest, const std::string& src, const std::string& divider = ". ")
 {
     if (!dest.empty()) {
@@ -98,7 +99,9 @@ CheckResult checkConsecutiveParams(const clang::FunctionDecl& functionDecl, cons
     };
 }
 
-}
+
+} // ns
+
 
 Heuristic createHeuristic_KM_1()
 {
