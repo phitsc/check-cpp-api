@@ -6,7 +6,6 @@
 #include <clang/AST/DeclCXX.h>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/optional.hpp>
 
 #include <array>
 
