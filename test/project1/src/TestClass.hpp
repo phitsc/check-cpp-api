@@ -4,6 +4,12 @@ class TestClass
 {
 public:
 
+    // KC-1-1
+    void camelCase();
+    void PascalCase();
+    void snake_case();
+    int  iHungarian();
+
     // KCE-1-1
     void sendMsg();
     void getDesc();
@@ -12,9 +18,9 @@ public:
     void msgDigest(); // this will currently not be caught
 
     // KM-1-1
-    void shortfn();
-    void normal_length();
-    void method_with_a_very_long_name_that_is_difficult_to_remember();
+    void shortFn();
+    void normalLength();
+    void methodWithAveryLongNameThatIsDifficultToRemember();
 
     // KM-1-2
     void zeroArgs();
@@ -31,4 +37,6 @@ public:
     void sixConsArgsBroken(int, int, int, double, int, int);
     void twiceFiveConsArgs(int, int, int, int, int,
         double, double, double, double, double);
+
+
 };
