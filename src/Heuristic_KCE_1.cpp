@@ -13,8 +13,8 @@ namespace
 {
 
 
-constexpr const std::array<const char*, 3> CommonAbbreviations = { {
-    "desc", "loc", "msg"
+constexpr const std::array<const char*, 5> CommonAbbreviations = { {
+    "calc", "desc", "loc", "msg", "rect"
 } };
 
 

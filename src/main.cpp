@@ -1,4 +1,4 @@
-
+#include "CaseType.hpp"
 #include "MatchPrinter.hpp"
 #include "HeuristicsCheckAction.hpp"
 #include "Options.hpp"
@@ -38,6 +38,18 @@ static cl::opt<bool> json("json",
     cl::desc(R"(Export violations to JSON file)"),
     cl::init(false),
     cl::cat(optionCategory));
+
+constexpr const auto kc_1_1_init = camel;
+cl::opt<CaseTypeOption> kc_1_1_case_type("kc-1-1-case-type",
+    cl::desc("The case type used by the API (default: camel)"),
+    cl::values(
+        clEnumVal(camel,     "camelCase"),
+        clEnumVal(pascal,    "PascalCase"),
+        clEnumVal(snake,     "snake_case"),
+        clEnumVal(hungarian, "szHungarianNotation")
+    ),
+    cl::cat(optionCategory)
+);
 
 constexpr const int km_1_1_init = 25;
 static cl::opt<int> km_1_1_limit("km-1-1-limit",
@@ -88,6 +100,7 @@ int main(int argc, const char** argv)
 
     Options options;
     addOpt(options, json);
+    addOpt(options, kc_1_1_case_type, kc_1_1_init);
     addOpt(options, km_1_1_limit, km_1_1_init);
     addOpt(options, km_1_2_limit, km_1_2_init);
     addOpt(options, km_1_3_limit, km_1_3_init);

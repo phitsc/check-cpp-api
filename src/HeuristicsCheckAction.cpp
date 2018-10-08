@@ -57,6 +57,7 @@ void writeToJson(
 HeuristicsCheckAction::HeuristicsCheckAction(Options options)
     : m_options(options)
 {
+    m_heuristics.push_back(createHeuristic_KC_1());
     m_heuristics.push_back(createHeuristic_KCE_1());
     m_heuristics.push_back(createHeuristic_KM_1());
 

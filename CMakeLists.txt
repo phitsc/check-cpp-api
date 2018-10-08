@@ -5,9 +5,10 @@ set(LLVM_LINK_COMPONENTS support)
 set(PROJECT_NAME check-cpp-api)
 
 add_clang_executable(${PROJECT_NAME}
-	src/Heuristic_KCE_1.cpp
-	src/Heuristic_KM_1.cpp
-	src/HeuristicsCheckAction.cpp
+    src/Heuristic_KC_1.cpp
+    src/Heuristic_KCE_1.cpp
+    src/Heuristic_KM_1.cpp
+    src/HeuristicsCheckAction.cpp
     src/main.cpp
 )
 
