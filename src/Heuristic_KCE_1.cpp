@@ -21,7 +21,7 @@ constexpr const std::array<const char*, 3> CommonAbbreviations = { {
 
 CheckResult checkForAbbreviation(const clang::FunctionDecl& functionDecl, const Options& options)
 {
-    const auto name = boost::to_lower_copy(functionDecl.getNameInfo().getAsString());
+    const auto name = boost::to_lower_copy(getFunctionName(functionDecl));
 
     for (const auto term : CommonAbbreviations) {
         if (boost::ends_with(name, term)) {

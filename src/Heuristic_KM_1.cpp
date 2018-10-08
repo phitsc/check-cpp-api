@@ -15,7 +15,7 @@ CheckResult checkFunctionNameLength(const clang::FunctionDecl& functionDecl, con
 {
     const auto limit = boost::get<int>(options["km-1-1-limit"].value());
 
-    const auto name = functionDecl.getNameInfo().getAsString();
+    const auto name = getFunctionName(functionDecl);
 
         // ignore operators
     if ((int)name.length() > limit && name.find("operator ") == std::string::npos) {

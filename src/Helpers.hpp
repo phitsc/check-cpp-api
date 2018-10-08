@@ -20,3 +20,9 @@ inline clang::SourceLocation loc(const clang::FunctionDecl& functionDecl)
 {
     return functionDecl.getSourceRange().getBegin();
 }
+
+
+inline std::string getFunctionName(const clang::FunctionDecl& functionDecl)
+{
+    return functionDecl.getNameInfo().getAsString();
+}
