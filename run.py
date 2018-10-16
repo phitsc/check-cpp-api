@@ -19,18 +19,30 @@ def main():
 
         test_project_dir = Path(args.p).parent if args.p else None
         test_project_name = Path(args.p).parent.stem if args.p else None
+        test_project_build_dir_name = Path(args.p).stem if args.p else None
 
         # project_volume required to run docker-run.sh script
         project_volume = ("{}:/root/clang-llvm/llvm/tools/clang/tools/extra/{}"
             .format(Path.cwd().as_posix(), project_name))
 
+        # test project volume and arguments
         if test_project_dir:
             test_project_volume = ("{}:/root/test_project/{}"
                 .format(test_project_dir.as_posix(), test_project_name))
+
+            test_project_args = ("-p /root/test_project/{}/{} {}"
+                .format(
+                    test_project_name,
+                    test_project_build_dir_name,
+                    ' '.join(unknownArgs)
+                )
+            )
         else:
             # if -p was not supplied, just pass same volume twice
             # to specify a valid volume
             test_project_volume = project_volume
+            test_project_args = ' '.join(unknownArgs)
+
 
         call([
             'docker',
@@ -42,7 +54,7 @@ def main():
             project_name, # project name = image name
             "/root/clang-llvm/llvm/tools/clang/tools/extra/{}/Docker/docker-run.sh"
             .format(project_name),
-            " ".join(sys.argv[1:]) # pass on command line arguments
+            test_project_args # pass on command line arguments
             # "/bin/bash"
         ])
 
