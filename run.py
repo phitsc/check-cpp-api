@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 import argparse
+import fileinput
 import sys
 
 from helpers import docker_image_exists
+from os import remove, rename
 from pathlib import Path
 from subprocess import call
 
@@ -24,6 +26,13 @@ def redirectPaths(unknownArgs, name, dir):
 
     return ret
 
+
+def patchCompileCommands(compile_commands_file, test_project_dir, container_project_dir):
+    with fileinput.FileInput(compile_commands_file, inplace=True, backup='.bak') as file:
+        for line in file:
+            print(line.replace("\\\\", "/").replace(test_project_dir, container_project_dir), end='')
+
+
 def main():
     if (docker_image_exists(project_name)):
 
@@ -36,6 +45,7 @@ def main():
         test_project_name = Path(args.p).parent.stem if args.p else None
         test_project_build_dir_name = Path(args.p).stem if args.p else None
         container_project_dir = "/root/test_project/" + test_project_name if args.p else None
+        compile_commands_file = Path(args.p) / 'compile_commands.json' if args.p else None
 
         # redirect local paths to their respective directory within the container
         if container_project_dir:
@@ -63,6 +73,10 @@ def main():
             test_project_volume = project_volume
             test_project_args = ' '.join(unknownArgs)
 
+
+        if compile_commands_file and compile_commands_file.exists:
+            patchCompileCommands(compile_commands_file, test_project_dir.as_posix(), container_project_dir)
+
         call([
             'docker',
             'run',
@@ -76,6 +90,10 @@ def main():
             test_project_args # pass on command line arguments
             # "/bin/bash"
         ])
+
+        if compile_commands_file and compile_commands_file.exists:
+            remove(compile_commands_file)
+            rename(compile_commands_file.with_suffix(".json.bak"), compile_commands_file)
 
     else:
         raise Exception("{} Docker image not found. Run make.py first."

@@ -1,2 +1,2 @@
-builddir/
+build*/
 __pycache__/
