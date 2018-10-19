@@ -28,9 +28,17 @@ def redirectPaths(unknownArgs, name, dir):
 
 
 def patchCompileCommands(compile_commands_file, test_project_dir, container_project_dir):
-    with fileinput.FileInput(compile_commands_file, inplace=True, backup='.bak') as file:
+    with fileinput.FileInput(str(compile_commands_file), inplace=True, backup='.bak') as file:
         for line in file:
             print(line.replace("\\\\", "/").replace(test_project_dir, container_project_dir), end='')
+
+
+def fixWslPath(path):
+    # workaround for the problem described here:
+    # https://forums.docker.com/t/volume-mounts-in-windows-does-not-work/10693/169
+    parts = list(Path(path).parts)
+    parts[1] = "host_mnt" if len(parts) > 1 and parts[1] == "mnt" else parts[1]
+    return Path(*parts)
 
 
 def main():
@@ -53,12 +61,12 @@ def main():
 
         # project_volume required to run docker-run.sh script
         project_volume = ("{}:/root/clang-llvm/llvm/tools/clang/tools/extra/{}"
-            .format(Path.cwd().as_posix(), project_name))
+            .format(fixWslPath(Path.cwd()), project_name))
 
         # test project volume and arguments
         if test_project_dir:
             test_project_volume = ("{}:{}"
-                .format(test_project_dir.as_posix(), container_project_dir))
+                .format(fixWslPath(test_project_dir), container_project_dir))
 
             test_project_args = ("-p /root/test_project/{}/{} {}"
                 .format(
