@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 
-from helpers import docker_image_exists, docker_container_exists
+"""
+Builds check-cpp-api within a Docker container
+if a suitable Docker image named libtooling exists.
+"""
+
 from pathlib import Path
 from subprocess import check_call
+from helpers import docker_image_exists, docker_container_exists
 
-project_name = "check-cpp-api"
-build_image_name = "libtooling"
-build_container_name = "{}_build".format(project_name)
+PROJECT_NAME = "check-cpp-api"
+BUILD_IMAGE_NAME = "libtooling"
+BUILD_CONTAINER_NAME = "{}_build".format(PROJECT_NAME)
 
 
 def main():
-    if docker_image_exists(build_image_name):
-        if docker_container_exists(build_container_name):
-            check_call(["docker", "start", "-i", build_container_name])
+    """ The main function """
+    if docker_image_exists(BUILD_IMAGE_NAME):
+        if docker_container_exists(BUILD_CONTAINER_NAME):
+            check_call(["docker", "start", "-i", BUILD_CONTAINER_NAME])
         else:
             working_dir = Path.cwd()
 
@@ -22,24 +28,25 @@ def main():
                     "run",
                     "-it",
                     "--name",
-                    build_container_name,
+                    BUILD_CONTAINER_NAME,
                     "-v",
                     "{}:/root/clang-llvm/llvm/tools/clang/tools/extra/{}".format(
-                        working_dir.as_posix(), project_name
+                        working_dir.as_posix(), PROJECT_NAME
                     ),
-                    build_image_name,
+                    BUILD_IMAGE_NAME,
+                    # pylint: disable=line-too-long
                     "/root/clang-llvm/llvm/tools/clang/tools/extra/{}/Docker/docker-build.sh".format(
-                        project_name
+                        PROJECT_NAME
                     )
                     #'--entrypoint', f"/bin/bash",
                 ]
             )
 
-        check_call(["docker", "commit", build_container_name, project_name])
+        check_call(["docker", "commit", BUILD_CONTAINER_NAME, PROJECT_NAME])
     else:
-        raise Exception(
+        raise RuntimeError(
             "{} Docker image not found. Run 'docker build -t {} .' first.".format(
-                build_image_name, build_image_name
+                BUILD_IMAGE_NAME, BUILD_IMAGE_NAME
             )
         )
 
@@ -47,5 +54,5 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except Exception as e:
-        print("Error:", e)
+    except RuntimeError as error:
+        print("Error:", error)

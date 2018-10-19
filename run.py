@@ -1,25 +1,32 @@
 #!/usr/bin/env python3
 
+"""
+Runs check-cpp-api within a Docker container
+if a suitable Docker image named check-cpp-api exists.
+"""
+
 import argparse
 import fileinput
-import sys
 
-from helpers import docker_image_exists
 from os import remove, rename
 from pathlib import Path
 from subprocess import call
+from helpers import docker_image_exists
 
-project_name = "check-cpp-api"
+PROJECT_NAME = "check-cpp-api"
 
 
-def redirect_paths(unknownArgs, name, dir):
+def redirect_paths(unknown_args, name, directory):
+    """ For every argument in unknown_args which is an existing
+        file path containing name, the file path is redirected
+        to directory"""
     ret = []
 
-    for arg in unknownArgs:
+    for arg in unknown_args:
         if Path(arg).exists:
             pos = arg.find(name)
             if pos >= 0:
-                ret.append(dir + arg[pos + len(name) :])
+                ret.append(directory + arg[pos + len(name) :])
             else:
                 ret.append(arg)
         else:
@@ -27,10 +34,13 @@ def redirect_paths(unknownArgs, name, dir):
 
     return ret
 
-
+# pylint: disable=C0330
 def patch_compile_commands(
     compile_commands_file, test_project_dir, container_project_dir
 ):
+    """ Replaces occurrences of test_project_dir in the compilation
+        database file with container_project_dir. Also replaces \
+        by / """
     with fileinput.FileInput(
         str(compile_commands_file), inplace=True, backup=".bak"
     ) as file:
@@ -44,6 +54,7 @@ def patch_compile_commands(
 
 
 def fix_wsl_path(path):
+    """ Replaces /mnt/... by /host_mnt/... in paths starting with /mnt/ """
     # workaround for the problem described here:
     # https://forums.docker.com/t/volume-mounts-in-windows-does-not-work/10693/169
     parts = list(Path(path).parts)
@@ -52,12 +63,13 @@ def fix_wsl_path(path):
 
 
 def main():
-    if docker_image_exists(project_name):
+    """ The main function """
+    if docker_image_exists(PROJECT_NAME):
 
         # extract test project name and directory from -p argument
         parser = argparse.ArgumentParser(add_help=False)
         parser.add_argument("-p")
-        args, unknownArgs = parser.parse_known_args()
+        args, unknown_args = parser.parse_known_args()
 
         test_project_dir = Path(args.p).parent if args.p else None
         test_project_name = Path(args.p).parent.stem if args.p else None
@@ -71,13 +83,13 @@ def main():
 
         # redirect local paths to their respective directory within the container
         if container_project_dir:
-            unknownArgs = redirect_paths(
-                unknownArgs, test_project_name, container_project_dir
+            unknown_args = redirect_paths(
+                unknown_args, test_project_name, container_project_dir
             )
 
         # project_volume required to run docker-run.sh script
         project_volume = "{}:/root/clang-llvm/llvm/tools/clang/tools/extra/{}".format(
-            fix_wsl_path(Path.cwd()), project_name
+            fix_wsl_path(Path.cwd()), PROJECT_NAME
         )
 
         # test project volume and arguments
@@ -87,13 +99,13 @@ def main():
             )
 
             test_project_args = "-p /root/test_project/{}/{} {}".format(
-                test_project_name, test_project_build_dir_name, " ".join(unknownArgs)
+                test_project_name, test_project_build_dir_name, " ".join(unknown_args)
             )
         else:
             # if -p was not supplied, just pass same volume twice
             # to specify a valid volume
             test_project_volume = project_volume
-            test_project_args = " ".join(unknownArgs)
+            test_project_args = " ".join(unknown_args)
 
         if compile_commands_file and compile_commands_file.exists:
             patch_compile_commands(
@@ -112,9 +124,9 @@ def main():
                 project_volume,
                 "-v",
                 test_project_volume,
-                project_name,  # project name = image name
+                PROJECT_NAME,  # project name = image name
                 "/root/clang-llvm/llvm/tools/clang/tools/extra/{}/Docker/docker-run.sh".format(
-                    project_name
+                    PROJECT_NAME
                 ),
                 test_project_args  # pass on command line arguments
                 # "/bin/bash"
@@ -129,13 +141,13 @@ def main():
             )
 
     else:
-        raise Exception(
-            "{} Docker image not found. Run make.py first.".format(project_name)
+        raise RuntimeError(
+            "{} Docker image not found. Run make.py first.".format(PROJECT_NAME)
         )
 
 
 if __name__ == "__main__":
     try:
         main()
-    except Exception as e:
-        print("Error:", e)
+    except RuntimeError as error:
+        print("Error:", error)
