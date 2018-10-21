@@ -11,7 +11,7 @@ import fileinput
 from os import remove, rename
 from pathlib import Path
 from subprocess import call
-from helpers import docker_image_exists
+from helpers import docker_image_exists, fix_wsl_path
 
 PROJECT_NAME = "check-cpp-api"
 
@@ -34,6 +34,7 @@ def redirect_paths(unknown_args, name, directory):
 
     return ret
 
+
 # pylint: disable=C0330
 def patch_compile_commands(
     compile_commands_file, test_project_dir, container_project_dir
@@ -51,15 +52,6 @@ def patch_compile_commands(
                 ),
                 end="",
             )
-
-
-def fix_wsl_path(path):
-    """ Replaces /mnt/... by /host_mnt/... in paths starting with /mnt/ """
-    # workaround for the problem described here:
-    # https://forums.docker.com/t/volume-mounts-in-windows-does-not-work/10693/169
-    parts = list(Path(path).parts)
-    parts[1] = "host_mnt" if len(parts) > 1 and parts[1] == "mnt" else parts[1]
-    return Path(*parts)
 
 
 def main():

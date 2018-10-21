@@ -7,7 +7,7 @@ if a suitable Docker image named libtooling exists.
 
 from pathlib import Path
 from subprocess import check_call
-from helpers import docker_image_exists, docker_container_exists
+from helpers import docker_image_exists, docker_container_exists, fix_wsl_path
 
 PROJECT_NAME = "check-cpp-api"
 BUILD_IMAGE_NAME = "libtooling"
@@ -20,7 +20,7 @@ def main():
         if docker_container_exists(BUILD_CONTAINER_NAME):
             check_call(["docker", "start", "-i", BUILD_CONTAINER_NAME])
         else:
-            working_dir = Path.cwd()
+            working_dir = fix_wsl_path(Path.cwd())
 
             check_call(
                 [
@@ -42,6 +42,7 @@ def main():
                 ]
             )
 
+        print("Creating Docker image {}".format(PROJECT_NAME))
         check_call(["docker", "commit", BUILD_CONTAINER_NAME, PROJECT_NAME])
     else:
         raise RuntimeError(
