@@ -27,6 +27,12 @@ public:
         return m_value;
     }
 
+    template<typename T>
+    const T& as() const
+    {
+        return boost::get<T>(value());
+    }
+
 private:
     std::string m_id;
     std::string m_description;

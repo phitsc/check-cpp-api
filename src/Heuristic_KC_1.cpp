@@ -12,7 +12,7 @@ namespace
 
 CheckResult checkForConsistentNaming(const clang::FunctionDecl& functionDecl, const Options& options)
 {
-    const auto expectedCaseType = caseTypeFromInt(boost::get<int>(options["kc-1-1-case-type"].value()));
+    const auto expectedCaseType = caseTypeFromInt(options["kc-1-1-case-type"].as<int>());
 
     const auto name = getFunctionName(functionDecl);
     const auto caseType = determineCaseType(name);

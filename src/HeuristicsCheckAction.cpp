@@ -12,7 +12,8 @@ void printToConsole(
     const clang::SourceManager& sm,
     const Heuristic& heuristic,
     const FailedChecks& failedChecks,
-    bool onlyUserCode)
+    bool onlyUserCode,
+    bool beVerbose)
 {
     for (const auto& fc : failedChecks) {
         if (!onlyUserCode || sm.getFileCharacteristic(fc.loc()) == clang::SrcMgr::C_User) {
@@ -98,7 +99,12 @@ void HeuristicsCheckAction::run(const MatchFinder::MatchResult& result)
                         true,
                         m_isFirstRecord);
                 } else {
-                    printToConsole(*result.SourceManager, heuristic, failedChecks, true);
+                    printToConsole(
+                        *result.SourceManager,
+                        heuristic,
+                        failedChecks,
+                        true, // only user code
+                        m_options["verbose"].as<bool>());
                 }
             }
         }

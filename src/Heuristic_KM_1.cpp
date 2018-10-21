@@ -13,7 +13,7 @@ namespace
 
 CheckResult checkFunctionNameLength(const clang::FunctionDecl& functionDecl, const Options& options)
 {
-    const auto limit = boost::get<int>(options["km-1-1-limit"].value());
+    const auto limit = options["km-1-1-limit"].as<int>();
 
     const auto name = getFunctionName(functionDecl);
 
@@ -33,7 +33,7 @@ CheckResult checkFunctionNameLength(const clang::FunctionDecl& functionDecl, con
 
 CheckResult checkParamCount(const clang::FunctionDecl& functionDecl, const Options& options)
 {
-    const auto limit = boost::get<int>(options["km-1-2-limit"].value());
+    const auto limit = options["km-1-2-limit"].as<int>();
 
     if ((int)functionDecl.parameters().size() > limit) {
         return { loc(functionDecl), std::to_string(functionDecl.parameters().size()) + " parameters" };
@@ -45,7 +45,7 @@ CheckResult checkParamCount(const clang::FunctionDecl& functionDecl, const Optio
 
 CheckResult checkConsecutiveParams(const clang::FunctionDecl& functionDecl, const Options& options)
 {
-    const auto limit = boost::get<int>(options["km-1-3-limit"].value());
+    const auto limit = options["km-1-3-limit"].as<int>();
 
     auto check = [limit](const auto& params) -> boost::optional<std::string> {
         if ((int)params.size() > limit) {
