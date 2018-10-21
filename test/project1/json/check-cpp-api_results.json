@@ -46,13 +46,6 @@
     "line": 17,
     "heuristic": "KCE-1",
     "guideline": 1,
-    "message": "invalid case type"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 17,
-    "heuristic": "KCE-1",
-    "guideline": 1,
     "message": "abbreviation"
   },
   {
