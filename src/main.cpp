@@ -31,6 +31,13 @@ namespace boost
 
 namespace {
 
+void printVersion(llvm::raw_ostream& ostream)
+{
+    ostream << "check-cpp-api version 0.1.0\n";
+
+    std::exit(0);
+}
+
 static cl::OptionCategory optionCategory("check-cpp-api Options");
 
 // clang-format off
@@ -88,6 +95,8 @@ void addOpt(Options& opts, const T& opt, int optInit = -1)
 
 int main(int argc, const char** argv)
 {
+    cl::SetVersionPrinter(&printVersion);
+
     CommonOptionsParser optionsParser(argc, argv, optionCategory);
 
     ClangTool tool(optionsParser.getCompilations(), optionsParser.getSourcePathList());
