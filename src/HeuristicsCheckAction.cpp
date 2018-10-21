@@ -19,7 +19,12 @@ void printToConsole(
         if (!onlyUserCode || sm.getFileCharacteristic(fc.loc()) == clang::SrcMgr::C_User) {
             llvm::outs()
                 << sm.getFilename(fc.loc()) << ":" << sm.getSpellingLineNumber(fc.loc()) << ": "
-                << heuristic.id() << "-" << fc.guidelineId() << ": " << fc.msg() << "\n";
+                << heuristic.id() << "-" << fc.guidelineId() << ": " << fc.message() << "\n";
+
+            if (beVerbose) {
+                llvm::outs()
+                    << ": " << fc.verboseMessage() << "\n";
+            }
         }
     }
 }
@@ -47,7 +52,7 @@ void writeToJson(
             file << "    \"line\": " << sm.getSpellingLineNumber(fc.loc()) << ",\n";
             file << "    \"heuristic\": \"" << heuristic.id() << "\",\n";
             file << "    \"guideline\": " << fc.guidelineId() << ",\n";
-            file << "    \"message\": \"" << fc.msg() << "\"\n";
+            file << "    \"message\": \"" << fc.message() << "\"\n";
             file << "  }";
         }
     }
@@ -62,7 +67,7 @@ HeuristicsCheckAction::HeuristicsCheckAction(Options options)
     m_heuristics.push_back(createHeuristic_KCE_1());
     m_heuristics.push_back(createHeuristic_KM_1());
 
-    if (boost::get<bool>(m_options["json"].value())) {
+    if (m_options["json"].as<bool>()) {
         const auto filePath = fs::current_path() / "check-cpp-api_results.json";
         m_file = std::make_unique<std::ofstream>(filePath.c_str());
 

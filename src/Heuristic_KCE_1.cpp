@@ -24,7 +24,11 @@ CheckResult checkForAbbreviation(const clang::FunctionDecl& functionDecl, const 
 
     for (const auto term : CommonAbbreviations) {
         if (boost::ends_with(name, term)) {
-            return { loc(functionDecl), "abbreviation" };
+            return {
+                loc(functionDecl),
+                "abbreviation",
+                "function '" + name + "' ends with an abbreviation"
+            };
         }
     }
 

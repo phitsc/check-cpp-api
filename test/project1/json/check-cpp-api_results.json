@@ -60,48 +60,48 @@
     "line": 29,
     "heuristic": "KM-1",
     "guideline": 2,
-    "message": "6 parameters"
+    "message": "too many parameters"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
     "line": 30,
     "heuristic": "KM-1",
     "guideline": 2,
-    "message": "6 parameters"
+    "message": "too many parameters"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
     "line": 35,
     "heuristic": "KM-1",
     "guideline": 3,
-    "message": "4 consecutive parameters of type int"
+    "message": "too many consecutive parameters of same type"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
     "line": 36,
     "heuristic": "KM-1",
     "guideline": 3,
-    "message": "5 consecutive parameters of type int"
+    "message": "too many consecutive parameters of same type"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
     "line": 37,
     "heuristic": "KM-1",
     "guideline": 2,
-    "message": "6 parameters"
+    "message": "too many parameters"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
     "line": 38,
     "heuristic": "KM-1",
     "guideline": 2,
-    "message": "10 parameters"
+    "message": "too many parameters"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
     "line": 38,
     "heuristic": "KM-1",
     "guideline": 3,
-    "message": "5 consecutive parameters of type int. 5 consecutive parameters of type double"
+    "message": "too many consecutive parameters of same type"
   }
 }

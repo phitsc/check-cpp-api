@@ -23,7 +23,12 @@ CheckResult checkFunctionNameLength(const clang::FunctionDecl& functionDecl, con
 
             // also ignore generated methods
         if (!methodDecl || methodDecl->isUserProvided()) {
-            return { loc(functionDecl), "long function name" };
+            return {
+                 loc(functionDecl),
+                 "long function name",
+                 "the name of function '" + name + "' is " + std::to_string(name.length()) +
+                 " characters long, which is more than " + std::to_string(limit) + " characters"
+             };
         }
     }
 
@@ -36,7 +41,12 @@ CheckResult checkParamCount(const clang::FunctionDecl& functionDecl, const Optio
     const auto limit = options["km-1-2-limit"].as<int>();
 
     if ((int)functionDecl.parameters().size() > limit) {
-        return { loc(functionDecl), std::to_string(functionDecl.parameters().size()) + " parameters" };
+        return {
+            loc(functionDecl),
+             "too many parameters",
+             "function '" + getFunctionName(functionDecl) + "' has " + std::to_string(functionDecl.parameters().size()) +
+             " parameters, which are more than " + std::to_string(limit) + " parameters"
+        };
     } else {
         return {};
     }
@@ -64,7 +74,7 @@ CheckResult checkConsecutiveParams(const clang::FunctionDecl& functionDecl, cons
         if (!params.empty()) {
             if (params.back()->getOriginalType() != param->getOriginalType()) {
                 if (auto res = check(params)) {
-                    append(msg, *res);
+                    append(msg, *res, " and ");
                 }
 
                 params.clear();
@@ -75,12 +85,13 @@ CheckResult checkConsecutiveParams(const clang::FunctionDecl& functionDecl, cons
     }
 
     if (auto res = check(params)) {
-        append(msg, *res);
+        append(msg, *res, " and ");
     }
 
     return {
         !msg.empty() ? loc(functionDecl) : clang::SourceLocation(),
-        msg
+        !msg.empty() ? "too many consecutive parameters of same type" : "",
+        !msg.empty() ? ("function '" + getFunctionName(functionDecl) + "' has " + msg) : ""
     };
 }
 

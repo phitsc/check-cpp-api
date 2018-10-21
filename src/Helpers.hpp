@@ -6,7 +6,7 @@
 #include <string>
 
 
-inline void append(std::string& dest, const std::string& src, const std::string& divider = ". ")
+inline void append(std::string& dest, const std::string& src, const std::string& divider)
 {
     if (!dest.empty()) {
         dest += divider;

@@ -18,7 +18,12 @@ CheckResult checkForConsistentNaming(const clang::FunctionDecl& functionDecl, co
     const auto caseType = determineCaseType(name);
 
     if (caseType != expectedCaseType && caseType != CaseType::Unknown) {
-        return { loc(functionDecl), "invalid case type" };
+        return {
+            loc(functionDecl),
+            "invalid case type",
+            "function '" + name + "' uses case type '" + toString(caseType) + "'"
+            " instead of '" + toString(expectedCaseType) + "'"
+        };
     }
 
     return {};

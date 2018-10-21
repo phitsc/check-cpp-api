@@ -7,14 +7,20 @@ class CheckResult
 public:
     CheckResult() = default;
 
-    CheckResult(clang::SourceLocation loc, std::string msg)
+    CheckResult(
+        clang::SourceLocation loc,
+        std::string message,
+        std::string verboseMessage
+    )
         : m_loc(loc)
-        , m_msg(msg)
+        , m_message(message)
+        , m_verboseMessage(verboseMessage)
     {}
 
     CheckResult(const CheckResult& other, int guidelineId)
         : m_loc(other.loc())
-        , m_msg(other.msg())
+        , m_message(other.message())
+        , m_verboseMessage(other.verboseMessage())
         , m_guidelineId(guidelineId)
     {}
 
@@ -23,9 +29,14 @@ public:
         return m_loc;
     }
 
-    const std::string& msg() const
+    const std::string& message() const
     {
-        return m_msg;
+        return m_message;
+    }
+
+    const std::string& verboseMessage() const
+    {
+        return m_verboseMessage;
     }
 
     int guidelineId() const
@@ -35,11 +46,12 @@ public:
 
     bool failure() const
     {
-        return !m_msg.empty();
+        return !m_message.empty();
     }
 
 private:
     clang::SourceLocation m_loc;
-    std::string m_msg;
+    std::string m_message;
+    std::string m_verboseMessage;
     int m_guidelineId = 0;
 };
