@@ -70,23 +70,23 @@ cl::opt<CaseTypeOption> kc_1_1_case_type("kc-1-1-case-type",
     cl::cat(optionCategory)
 );
 
-constexpr const int km_1_1_init = 25;
+constexpr const int km_1_1_init = 30;
 static cl::opt<int> km_1_1_limit("km-1-1-limit",
-    cl::desc(R"(Function name length limit (default: 25))"),
+    cl::desc("Function name length limit (default: 30)"),
     cl::init(km_1_1_init),
     cl::cat(optionCategory)
 );
 
 constexpr const int km_1_2_init = 5;
 static cl::opt<int> km_1_2_limit("km-1-2-limit",
-    cl::desc(R"(Parameter count limit (default: 5))"),
+    cl::desc("Parameter count limit (default: 5)"),
     cl::init(km_1_2_init),
     cl::cat(optionCategory)
 );
 
 constexpr const int km_1_3_init = 3;
 static cl::opt<int> km_1_3_limit("km-1-3-limit",
-    cl::desc(R"(Consecutive parameter type limit (default: 3))"),
+    cl::desc("Consecutive parameter type limit (default: 3)"),
     cl::init(km_1_3_init),
     cl::cat(optionCategory)
 );
