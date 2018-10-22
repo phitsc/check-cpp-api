@@ -16,6 +16,15 @@ from helpers import docker_image_exists, fix_wsl_path
 PROJECT_NAME = "check-cpp-api"
 
 
+def resolve_path(path):
+    """ Replacement for Path.resolve() which does not seem to
+        work properly on WSL """
+    if not path.is_absolute():
+        return fix_wsl_path(Path.cwd()) / path
+
+    return path
+
+
 def redirect_paths(unknown_args, name, directory):
     """ For every argument in unknown_args which is an existing
         file path containing name, the file path is redirected
@@ -24,11 +33,12 @@ def redirect_paths(unknown_args, name, directory):
 
     for arg in unknown_args:
         if Path(arg).exists:
-            pos = arg.find(name)
+            path = str(resolve_path(Path(arg)))
+            pos = path.find(name)
             if pos >= 0:
-                ret.append(directory + arg[pos + len(name) :])
+                ret.append(directory + path[pos + len(name) :])
             else:
-                ret.append(arg)
+                ret.append(path)
         else:
             ret.append(arg)
 
@@ -63,20 +73,21 @@ def main():
         parser.add_argument("-p")
         args, unknown_args = parser.parse_known_args()
 
-        test_project_dir = Path(args.p).parent if args.p else None
-        test_project_name = Path(args.p).parent.stem if args.p else None
-        test_project_build_dir_name = Path(args.p).stem if args.p else None
-        container_project_dir = (
-            "/root/test_project/" + test_project_name if args.p else None
-        )
-        compile_commands_file = (
-            Path(args.p) / "compile_commands.json" if args.p else None
-        )
+        if args.p:
+            test_project_build_dir = Path(args.p).resolve()
+            test_project_dir = test_project_build_dir.parent
+            container_project_dir = "/root/test_project/" + test_project_dir.stem
+            compile_commands_file = Path(args.p) / "compile_commands.json"
+        else:
+            test_project_build_dir = None
+            test_project_dir = None
+            container_project_dir = None
+            compile_commands_file = None
 
         # redirect local paths to their respective directory within the container
         if container_project_dir:
             unknown_args = redirect_paths(
-                unknown_args, test_project_name, container_project_dir
+                unknown_args, test_project_dir.stem, container_project_dir
             )
 
         # project_volume required to run docker-run.sh script
@@ -91,7 +102,9 @@ def main():
             )
 
             test_project_args = "-p /root/test_project/{}/{} {}".format(
-                test_project_name, test_project_build_dir_name, " ".join(unknown_args)
+                test_project_dir.stem,
+                test_project_build_dir.stem,
+                " ".join(unknown_args),
             )
         else:
             # if -p was not supplied, just pass same volume twice
