@@ -59,7 +59,7 @@ cd builddir
 cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 ```
 
-Make sure the *compile_commands.json* file has been created in the *project1/builddir* directory.
+    Make sure the *compile_commands.json* file has been created in the *project1/builddir* directory.
 
 4. Change back into the *check-cpp-api* directory and run check-cpp-api.
 
