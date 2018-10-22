@@ -19,22 +19,16 @@
 
 1. Clone the *check-cpp-api* repository into a directory of your choice and change into that directory.
 
-```bash
-git clone https://github.com/phitsc/check-cpp-api.git
-cd check-cpp-api
-```
+        git clone https://github.com/phitsc/check-cpp-api.git
+        cd check-cpp-api
 
 2. Create the *libtooling* docker image for building Clang tools.
 
-```bash
-sudo docker build -t libtooling Docker
-```
+        sudo docker build -t libtooling Docker
 
 3. Run the make script.
 
-```bash
-python3 make.py
-```
+        python3 make.py
 
 # Using check-cpp-api
 
@@ -42,29 +36,21 @@ python3 make.py
 
 1. Change into *check-cpp-api/test/project1*.
 
-```bash
-cd test/project1
-```
+        cd test/project1
 
 2. Create the *builddir* directory and change into it.
 
-```bash
-mkdir builddir
-cd builddir
-```
+        mkdir builddir
+        cd builddir
 
 3. Create the compilation database.
 
-```bash
-cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
-```
+        cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
     Make sure the *compile_commands.json* file has been created in the *project1/builddir* directory.
 
 4. Change back into the *check-cpp-api* directory and run check-cpp-api.
 
-```bash
-cd ../../..
-python3 run.py -p test/project1/builddir test/project1/src/TestClass.cpp
-```
+        cd ../../..
+        python3 run.py -p test/project1/builddir test/project1/src/TestClass.cpp
 
