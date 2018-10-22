@@ -32,7 +32,7 @@ def redirect_paths(unknown_args, name, directory):
     ret = []
 
     for arg in unknown_args:
-        if Path(arg).exists:
+        if Path(arg).exists():
             path = str(resolve_path(Path(arg)))
             pos = path.find(name)
             if pos >= 0:
