@@ -16,9 +16,12 @@ void printToConsole(
     bool beVerbose)
 {
     for (const auto& fc : failedChecks) {
-        if (!onlyUserCode || sm.getFileCharacteristic(fc.loc()) == clang::SrcMgr::C_User) {
+        const auto ploc = sm.getPresumedLoc(fc.loc());
+
+        if (ploc.isValid() &&
+            (!onlyUserCode || sm.getFileCharacteristic(fc.loc()) == clang::SrcMgr::C_User)) {
             llvm::outs()
-                << sm.getFilename(fc.loc()) << ":" << sm.getSpellingLineNumber(fc.loc()) << ": "
+                << ploc.getFilename() << ":" << ploc.getLine() << ": "
                 << heuristic.id() << "-" << fc.guidelineId() << ": " << fc.message() << "\n";
 
             if (beVerbose) {
