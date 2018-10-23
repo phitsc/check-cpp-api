@@ -3,6 +3,16 @@
 """
 Builds check-cpp-api within a Docker container
 if a suitable Docker image named libtooling exists.
+
+This script performs the following actions:
+
+1. Start a Docker container from the 'libtooling' image that contains
+   everything required to build LLVM, Clang and the Clang extra tools.
+2. Map the current directory as an additional extra tool into the container.
+3. Start the docker-build.sh script that builds LLVM, Clang and the extra tools.
+4. On successful completion of the build, commit the current state of the container
+   into an image named PROJECT_NAME that can then be started to run the
+   built application.
 """
 
 from pathlib import Path

@@ -3,6 +3,20 @@
 """
 Runs check-cpp-api within a Docker container
 if a suitable Docker image named check-cpp-api exists.
+
+This script performs the following actains:
+
+1. Start a Docker container from the PROJECT_NAME Docker image.
+2. Map the current directory and the parent directory of the
+   directory passed with the -p option into the container.
+3. Fix any paths that are passed to the tool so that they
+   point to their respective paths within the container.
+   In particular, update the paths in the compile_commands.json
+   file so that they represent valid paths within the container.
+5. Start the docker-run.sh script that executes the check-cpp-api
+   tool in the container, passing on any command line arguments
+   that have been supplied on the command line.
+6. Restore the compile_commands.json file to its original state.
 """
 
 import argparse
