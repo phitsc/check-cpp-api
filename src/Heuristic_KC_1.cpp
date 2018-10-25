@@ -5,6 +5,7 @@
 
 #include <clang/AST/Decl.h>
 #include <clang/AST/DeclCXX.h>
+#include <llvm/Support/Casting.h>
 
 namespace
 {
@@ -12,6 +13,12 @@ namespace
 
 CheckResult checkForConsistentNaming(const clang::FunctionDecl& functionDecl, const Options& options)
 {
+    if (llvm::isa<clang::CXXConstructorDecl>(&functionDecl)) {
+        // ignore constructors. they need to follow
+        // the naming convention of their class.
+        return {};
+    }
+
     const auto expectedCaseType = caseTypeFromInt(options["kc-1-1-case-type"].as<int>());
 
     const auto name = getFunctionName(functionDecl);

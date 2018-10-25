@@ -38,5 +38,7 @@ public:
     void twiceFiveConsArgs(int, int, int, int, int,
         double, double, double, double, double);
 
+    // constructor should be ignored
+    TestClass();
 
 };
