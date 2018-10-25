@@ -77,9 +77,9 @@ static cl::opt<int> km_1_1_limit("km-1-1-limit",
     cl::cat(optionCategory)
 );
 
-constexpr const int km_1_2_init = 5;
+constexpr const int km_1_2_init = 6;
 static cl::opt<int> km_1_2_limit("km-1-2-limit",
-    cl::desc("Parameter count limit (default: 5)"),
+    cl::desc("Parameter count limit (default: 6)"),
     cl::init(km_1_2_init),
     cl::cat(optionCategory)
 );

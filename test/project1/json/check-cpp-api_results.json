@@ -57,20 +57,6 @@
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 29,
-    "heuristic": "KM-1",
-    "guideline": 2,
-    "message": "too many parameters"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 30,
-    "heuristic": "KM-1",
-    "guideline": 2,
-    "message": "too many parameters"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
     "line": 35,
     "heuristic": "KM-1",
     "guideline": 3,
@@ -82,13 +68,6 @@
     "heuristic": "KM-1",
     "guideline": 3,
     "message": "too many consecutive parameters of same type"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 37,
-    "heuristic": "KM-1",
-    "guideline": 2,
-    "message": "too many parameters"
   },
   {
     "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
