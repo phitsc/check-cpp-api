@@ -17,16 +17,20 @@ CheckResult checkFunctionNameLength(const clang::FunctionDecl& functionDecl, con
 
     const auto name = getFunctionName(functionDecl);
 
-        // ignore operators
-    if ((int)name.length() > limit && name.find("operator ") == std::string::npos) {
+    // ignore template parameter names
+    const auto pos = name.find('<');
+    const auto len = pos == std::string::npos ? name.length() : pos;
+
+    // ignore operators
+    if ((int)len > limit && name.find("operator ") == std::string::npos) {
         auto methodDecl = clang::dyn_cast<clang::CXXMethodDecl>(&functionDecl);
 
-            // also ignore generated methods
+        // also ignore generated methods
         if (!methodDecl || methodDecl->isUserProvided()) {
             return {
                  loc(functionDecl),
                  "long function name",
-                 "the name of function '" + name + "' is " + std::to_string(name.length()) +
+                 "the name of function '" + name + "' is " + std::to_string(len) +
                  " characters long, which is more than " + std::to_string(limit) + " characters"
              };
         }
@@ -88,11 +92,18 @@ CheckResult checkConsecutiveParams(const clang::FunctionDecl& functionDecl, cons
         append(msg, *res, " and ");
     }
 
-    return {
-        !msg.empty() ? loc(functionDecl) : clang::SourceLocation(),
-        !msg.empty() ? "too many consecutive parameters of same type" : "",
-        !msg.empty() ? ("function '" + getFunctionName(functionDecl) + "' has " + msg) : ""
-    };
+    if (!msg.empty()) {
+        msg += " (only " + std::to_string(limit) + " consecutive parameters of same type allowed)";
+
+        return {
+            loc(functionDecl),
+            "too many consecutive parameters of same type",
+            "function '" + getFunctionName(functionDecl) + "' has " + msg
+        };
+    } else {
+        return {};
+    }
+
 }
 
 
