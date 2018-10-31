@@ -25,18 +25,9 @@ import fileinput
 from os import remove, rename
 from pathlib import Path
 from subprocess import call
-from helpers import docker_image_exists, fix_wsl_path
+from helpers import docker_image_exists, fix_wsl_path, resolve_path
 
 PROJECT_NAME = "check-cpp-api"
-
-
-def resolve_path(path):
-    """ Replacement for Path.resolve() which does not seem to
-        work properly on WSL """
-    if not path.is_absolute():
-        return fix_wsl_path(Path.cwd()) / path
-
-    return path
 
 
 def redirect_paths(unknown_args, name, directory):
@@ -47,7 +38,7 @@ def redirect_paths(unknown_args, name, directory):
 
     for arg in unknown_args:
         if Path(arg).exists():
-            path = str(resolve_path(Path(arg)))
+            path = str(fix_wsl_path(resolve_path(Path(arg))))
             pos = path.find(name)
             if pos >= 0:
                 ret.append(directory + path[pos + len(name) :])

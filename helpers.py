@@ -28,3 +28,12 @@ def fix_wsl_path(path):
     parts = list(Path(path).parts)
     parts[1] = "host_mnt" if len(parts) > 1 and parts[1] == "mnt" else parts[1]
     return Path(*parts)
+
+
+def resolve_path(path):
+    """ Replacement for Path.resolve() which does not seem to
+        work properly on WSL """
+    if not path.is_absolute():
+        return Path.cwd() / path
+
+    return path
