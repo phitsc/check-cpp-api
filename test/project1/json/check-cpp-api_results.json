@@ -1,86 +1,128 @@
 {
   {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 9,
-    "heuristic": "KCE-1",
-    "guideline": 1,
-    "message": "invalid case type"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 10,
-    "heuristic": "KCE-1",
-    "guideline": 1,
-    "message": "invalid case type"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "file": "/root/test_project/project1/src/TestClass.hpp",
     "line": 11,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "invalid case type"
   },
   {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 14,
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 12,
     "heuristic": "KCE-1",
     "guideline": 1,
-    "message": "abbreviation"
+    "message": "invalid case type"
   },
   {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 15,
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 13,
     "heuristic": "KCE-1",
     "guideline": 1,
-    "message": "abbreviation"
+    "message": "invalid case type"
   },
   {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "file": "/root/test_project/project1/src/TestClass.hpp",
     "line": 16,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "abbreviation"
   },
   {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "file": "/root/test_project/project1/src/TestClass.hpp",
     "line": 17,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "abbreviation"
   },
   {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 23,
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 18,
+    "heuristic": "KCE-1",
+    "guideline": 1,
+    "message": "abbreviation"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 19,
+    "heuristic": "KCE-1",
+    "guideline": 1,
+    "message": "abbreviation"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 25,
     "heuristic": "KM-1",
     "guideline": 1,
     "message": "long function name"
   },
   {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 35,
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 37,
     "heuristic": "KM-1",
     "guideline": 3,
     "message": "too many consecutive parameters of same type"
   },
   {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 36,
-    "heuristic": "KM-1",
-    "guideline": 3,
-    "message": "too many consecutive parameters of same type"
-  },
-  {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
+    "file": "/root/test_project/project1/src/TestClass.hpp",
     "line": 38,
+    "heuristic": "KM-1",
+    "guideline": 3,
+    "message": "too many consecutive parameters of same type"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 40,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
-    "file": "/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/project1/src/TestClass.hpp",
-    "line": 38,
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 40,
     "heuristic": "KM-1",
     "guideline": 3,
     "message": "too many consecutive parameters of same type"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 49,
+    "heuristic": "KM-1",
+    "guideline": 2,
+    "message": "too many parameters"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 52,
+    "heuristic": "KM-1",
+    "guideline": 2,
+    "message": "too many parameters"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 55,
+    "heuristic": "KCE-1",
+    "guideline": 2,
+    "message": "inconsistent ordering of in and out parameters"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 55,
+    "heuristic": "KM-1",
+    "guideline": 2,
+    "message": "too many parameters"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 59,
+    "heuristic": "KCE-1",
+    "guideline": 2,
+    "message": "inconsistent ordering of in and out parameters"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 59,
+    "heuristic": "KM-1",
+    "guideline": 2,
+    "message": "too many parameters"
   }
 }
