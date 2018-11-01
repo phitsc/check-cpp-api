@@ -36,6 +36,54 @@ CheckResult checkForConsistentNaming(const clang::FunctionDecl& functionDecl, co
     return {};
 }
 
+// substitute for QualType::isConstQualified() which does not
+// seem to work properly for const references.
+bool isConst(const clang::QualType& type)
+{
+    return type.getAsString().find("const ") == 0;
+}
+
+
+CheckResult checkForConsistentParameterOrdering(const clang::FunctionDecl& functionDecl, const Options& options)
+{
+    // check for mixture of in/out params
+    enum class InOutType
+    {
+        Uninitialized,
+        In,
+        Out
+    } inOutType = InOutType::Uninitialized;
+    auto inOutTypeChanged = false;
+
+    const auto getInOutType = [](const auto& type) {
+        return (!type.getTypePtr()->isReferenceType() || isConst(type)) ? InOutType::In : InOutType::Out;
+    };
+
+    for (const auto param : functionDecl.parameters()) {
+        const auto& type = param->getOriginalType();
+
+        const auto currentInOutType = getInOutType(type);
+
+        if (inOutType == InOutType::Uninitialized) {
+            inOutType = currentInOutType;
+        } else if (currentInOutType != inOutType) {
+            if (inOutTypeChanged) {
+                return {
+                    loc(functionDecl),
+                    "inconsistent ordering of in and out parameters",
+                    "function '" + getFunctionName(functionDecl) +
+                    "' has inconsistent in and out parameter ordering"
+                };
+            } else {
+                inOutType = currentInOutType;
+                inOutTypeChanged = true;
+            }
+        }
+    }
+
+    return {};
+}
+
 
 } // ns
 
@@ -45,6 +93,7 @@ Heuristic createHeuristic_KC_1()
         "KCE-1", "The API should be consistent with itself",
         {
             { 1, "Use consistent naming", &checkForConsistentNaming },
+            { 2, "Use consistent parameter ordering", &checkForConsistentParameterOrdering },
         }
     );
 }
