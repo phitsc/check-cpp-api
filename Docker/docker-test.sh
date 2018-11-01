@@ -12,8 +12,10 @@ ${unittests_build_dir}/test-check-cpp-api
 
 source ${DIR}/docker-build.sh
 
-test_project_dir=/root/test_project/project1
+test_dir=/root/test_project
+mkdir -p ${test_dir}
 
+test_project_dir=${test_dir}/project1
 ln -sfn ${llvm_root_dir}/llvm/tools/clang/tools/extra/${project_name}/test/project1 ${test_project_dir}
 
 ${llvm_build_dir}/bin/check-cpp-api -json -p ${test_project_dir}/build/ ${test_project_dir}/src/TestClass.cpp
