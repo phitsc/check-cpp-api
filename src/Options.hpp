@@ -22,7 +22,7 @@ public:
         return m_id;
     }
 
-    OptionValue value() const
+    const OptionValue& value() const
     {
         return m_value;
     }

@@ -70,8 +70,8 @@ HeuristicsCheckAction::HeuristicsCheckAction(Options options)
     m_heuristics.push_back(createHeuristic_KCE_1());
     m_heuristics.push_back(createHeuristic_KM_1());
 
-    if (m_options["json"].as<bool>()) {
-        const auto filePath = fs::current_path() / "check-cpp-api_results.json";
+    const auto filePath = m_options["json"].as<std::string>();
+    if (!filePath.empty()) {
         m_file = std::make_unique<std::ofstream>(filePath.c_str());
 
         if (m_file && m_file->is_open()) {

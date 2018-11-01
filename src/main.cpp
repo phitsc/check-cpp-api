@@ -41,9 +41,9 @@ void printVersion(llvm::raw_ostream& ostream)
 static cl::OptionCategory optionCategory("check-cpp-api Options");
 
 // clang-format off
-static cl::opt<bool> json("json",
+static cl::opt<std::string> json("json",
     cl::desc("Export violations to JSON file"),
-    cl::init(false),
+    cl::value_desc("filename"),
     cl::cat(optionCategory)
 );
 
@@ -96,13 +96,9 @@ static cl::extrahelp CommonHelp(CommonOptionsParser::HelpMessage);
 // static cl::extrahelp MoreHelp("\nMore help text...\n");
 
 template<typename T>
-void addOpt(Options& opts, const T& opt, int optInit = -1)
+void addOpt(Options& opts, const T& opt, OptionValue optInit = OptionValue())
 {
-    if (optInit == -1) {
-        opts.add({ opt.ArgStr, opt.HelpStr, opt });
-    } else {
-        opts.add({ opt.ArgStr, opt.HelpStr, opt.getNumOccurrences() > 0 ? opt : optInit });
-    }
+    opts.add({ opt.ArgStr, opt.HelpStr, opt.getNumOccurrences() > 0 ? opt : optInit });
 }
 
 } // namespace
@@ -123,8 +119,8 @@ int main(int argc, const char** argv)
     // tool.appendArgumentsAdjuster(getInsertArgumentAdjuster("-Wno-gnu-include-next"));
 
     Options options;
-    addOpt(options, json);
-    addOpt(options, verbose);
+    addOpt(options, json, std::string());
+    addOpt(options, verbose, false);
     addOpt(options, kc_1_1_case_type, kc_1_1_init);
     addOpt(options, km_1_1_limit, km_1_1_init);
     addOpt(options, km_1_2_limit, km_1_2_init);
