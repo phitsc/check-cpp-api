@@ -85,42 +85,49 @@
   },
   {
     "file": "/root/test_project/project1/src/TestClass.hpp",
-    "line": 49,
+    "line": 47,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
     "file": "/root/test_project/project1/src/TestClass.hpp",
-    "line": 52,
+    "line": 50,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
     "file": "/root/test_project/project1/src/TestClass.hpp",
-    "line": 55,
+    "line": 53,
+    "heuristic": "KM-1",
+    "guideline": 2,
+    "message": "too many parameters"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 56,
     "heuristic": "KCE-1",
     "guideline": 2,
     "message": "inconsistent ordering of in and out parameters"
   },
   {
     "file": "/root/test_project/project1/src/TestClass.hpp",
-    "line": 55,
+    "line": 56,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
     "file": "/root/test_project/project1/src/TestClass.hpp",
-    "line": 59,
+    "line": 60,
     "heuristic": "KCE-1",
     "guideline": 2,
     "message": "inconsistent ordering of in and out parameters"
   },
   {
     "file": "/root/test_project/project1/src/TestClass.hpp",
-    "line": 59,
+    "line": 60,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"

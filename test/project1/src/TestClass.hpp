@@ -44,14 +44,15 @@ public:
     TestClass();
 
     // KC-1-2
-    void onlyIn(int, double, const std::string&, std::string, const double&, bool);
+    void onlyIn(int, double, const std::string&, std::string,
+        const double&, std::string&&, bool);
     void onlyOut(int&, double&, std::string&, double&, bool&);
     void inThenOut(
         int, double, const std::string&, std::string,
         int&, double&, std::string&);
     void outThenIn(
         int&, double&, std::string&,
-        int, double, const std::string&, std::string);
+        int, double, const std::string&, std::string, std::string&&);
     void inOutIn(
         int, double, const std::string&, std::string,
         int&, double&, std::string&,
