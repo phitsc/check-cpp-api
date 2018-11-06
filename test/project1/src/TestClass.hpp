@@ -59,7 +59,7 @@ public:
         const std::string&);
     void outInOut(
         int&, double&, std::string&,
-        std::string, int, double, bool,
+        std::string, int, double, bool flag,
         double&);
 
 };

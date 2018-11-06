@@ -56,7 +56,7 @@ CheckResult checkForConsistentParameterOrdering(const clang::FunctionDecl& funct
     auto inOutTypeChanged = false;
 
     const auto getInOutType = [](const auto& type) {
-        return (!type.getTypePtr()->isLValueReferenceType() || isConst(type)) ? InOutType::In : InOutType::Out;
+        return (!type->isLValueReferenceType() || isConst(type)) ? InOutType::In : InOutType::Out;
     };
 
     for (const auto param : functionDecl.parameters()) {

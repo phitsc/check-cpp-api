@@ -57,6 +57,27 @@
   },
   {
     "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 30,
+    "heuristic": "KCE-2",
+    "guideline": 2,
+    "message": "boolean parameter"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 31,
+    "heuristic": "KCE-2",
+    "guideline": 2,
+    "message": "boolean parameter"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 32,
+    "heuristic": "KCE-2",
+    "guideline": 2,
+    "message": "boolean parameter"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
     "line": 37,
     "heuristic": "KM-1",
     "guideline": 3,
@@ -82,6 +103,13 @@
     "heuristic": "KM-1",
     "guideline": 3,
     "message": "too many consecutive parameters of same type"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 47,
+    "heuristic": "KCE-2",
+    "guideline": 2,
+    "message": "boolean parameter"
   },
   {
     "file": "/root/test_project/project1/src/TestClass.hpp",
@@ -124,6 +152,13 @@
     "heuristic": "KCE-1",
     "guideline": 2,
     "message": "inconsistent ordering of in and out parameters"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 60,
+    "heuristic": "KCE-2",
+    "guideline": 2,
+    "message": "boolean parameter"
   },
   {
     "file": "/root/test_project/project1/src/TestClass.hpp",

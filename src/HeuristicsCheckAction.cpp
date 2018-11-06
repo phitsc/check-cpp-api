@@ -8,6 +8,20 @@ namespace fs = std::experimental::filesystem;
 namespace
 {
 
+// sole purpose of this function is to keep the
+// respective code at the top of this file
+// so new heurstics are easier to add
+std::vector<Heuristic> createHeuristics()
+{
+    return {
+        createHeuristic_KC_1(),
+        createHeuristic_KCE_1(),
+        createHeuristic_KCE_2(),
+        createHeuristic_KM_1()
+    };
+}
+
+
 void printToConsole(
     const clang::SourceManager& sm,
     const Heuristic& heuristic,
@@ -64,12 +78,9 @@ void writeToJson(
 } // ns
 
 HeuristicsCheckAction::HeuristicsCheckAction(Options options)
-    : m_options(options)
+    : m_heuristics(createHeuristics())
+    , m_options(options)
 {
-    m_heuristics.push_back(createHeuristic_KC_1());
-    m_heuristics.push_back(createHeuristic_KCE_1());
-    m_heuristics.push_back(createHeuristic_KM_1());
-
     const auto filePath = m_options["json"].as<std::string>();
     if (!filePath.empty()) {
         m_file = std::make_unique<std::ofstream>(filePath.c_str());
