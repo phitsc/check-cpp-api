@@ -18,6 +18,11 @@ def main():
         help="Diff exported JSON file against the one in ./json",
         action="store_true",
     )
+    parser.add_argument(
+        "-v", "--verbose",
+        help="Be verbose when reporting violations",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     if args.json or args.diff:
@@ -28,6 +33,7 @@ def main():
     call_args = (
         ["python3", "run.py"]
         + ([("-json " + jsonFile)] if jsonFile else [])
+        + (["-v"] if args.verbose else [])
         + [
             "-p",
             str(resolve_path(Path("test/project1/builddir"))),
