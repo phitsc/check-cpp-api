@@ -36,33 +36,16 @@ CheckResult checkForConsistentNaming(const clang::FunctionDecl& functionDecl, co
     return {};
 }
 
-// substitute for QualType::isConstQualified() which does not
-// seem to work properly for const references.
-bool isConst(const clang::QualType& type)
-{
-    return type.getAsString().find("const ") == 0;
-}
 
-
+// check for mixture of in/out params
 CheckResult checkForConsistentParameterOrdering(const clang::FunctionDecl& functionDecl, const Options& options)
 {
-    // check for mixture of in/out params
-    enum class InOutType
-    {
-        Uninitialized,
-        In,
-        Out
-    } inOutType = InOutType::Uninitialized;
+    auto inOutType = InOutType::Uninitialized;
     auto inOutTypeChanged = false;
 
-    const auto getInOutType = [](const auto& type) {
-        return (!type->isLValueReferenceType() || isConst(type)) ? InOutType::In : InOutType::Out;
-    };
-
     for (const auto param : functionDecl.parameters()) {
-        const auto& type = param->getOriginalType();
-
-        const auto currentInOutType = getInOutType(type);
+        const auto currentInOutType = getInOutType(
+            param->getOriginalType());
 
         if (inOutType == InOutType::Uninitialized) {
             inOutType = currentInOutType;

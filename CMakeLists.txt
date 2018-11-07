@@ -9,6 +9,7 @@ add_clang_executable(${PROJECT_NAME}
     src/Heuristic_KCE_1.cpp
     src/Heuristic_KCE_2.cpp
     src/Heuristic_KM_1.cpp
+    src/Heuristic_RU_2.cpp
     src/HeuristicsCheckAction.cpp
     src/main.cpp
 )

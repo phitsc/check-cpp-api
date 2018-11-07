@@ -166,5 +166,12 @@
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
+  },
+  {
+    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "line": 68,
+    "heuristic": "RU-2",
+    "guideline": 1,
+    "message": "omission to use optional?"
   }
 }

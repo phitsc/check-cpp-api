@@ -36,7 +36,7 @@ Heuristic createHeuristic_KCE_2()
     return Heuristic(
         "KCE-2", "Data types should be as specific as possible to make the code more readable",
         {
-            { 2, "Use enumerations instead of booleans or strings for options", &checkForBooleanParams },
+            { 2, "Use enumerations instead of booleans for options", &checkForBooleanParams },
         }
     );
 }

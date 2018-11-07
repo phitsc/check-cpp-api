@@ -62,4 +62,8 @@ public:
         std::string, int, double, bool flag,
         double&);
 
+    // RU-2-1
+    bool noOutParams(int, double, std::string, const std::string&);
+    void noBoolResult(int, double& out1, std::string& out2);
+    bool withOutParams(int, double& out, std::string& out2);
 };

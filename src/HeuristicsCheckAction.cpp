@@ -17,7 +17,8 @@ std::vector<Heuristic> createHeuristics()
         createHeuristic_KC_1(),
         createHeuristic_KCE_1(),
         createHeuristic_KCE_2(),
-        createHeuristic_KM_1()
+        createHeuristic_KM_1(),
+        createHeuristic_RU_2()
     };
 }
 
