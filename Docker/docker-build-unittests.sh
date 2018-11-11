@@ -2,7 +2,10 @@
 
 set -ex
 
-source project-name.sh
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
+# set project_name variable
+source ${DIR}/project-name.sh
 
 unittests_dir="/root/clang-llvm/llvm/tools/clang/tools/extra/${project_name}/test/unittests"
 

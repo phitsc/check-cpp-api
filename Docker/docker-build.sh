@@ -2,7 +2,10 @@
 
 set -ex
 
-source project-name.sh
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
+# set project_name variable
+source ${DIR}/project-name.sh
 
 llvm_root_dir="/root/clang-llvm"
 llvm_build_dir=${llvm_root_dir}/build
