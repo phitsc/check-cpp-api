@@ -2,7 +2,9 @@
 
 set -ex
 
-unittests_dir="/root/clang-llvm/llvm/tools/clang/tools/extra/check-cpp-api/test/unittests"
+project_name="check-cpp-api"
+
+unittests_dir="/root/clang-llvm/llvm/tools/clang/tools/extra/${project_name}/test/unittests"
 
 if [ ! -d "${unittests_dir}" ]
 then
