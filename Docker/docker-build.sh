@@ -2,7 +2,7 @@
 
 set -ex
 
-project_name="check-cpp-api"
+source project-name.sh
 
 llvm_root_dir="/root/clang-llvm"
 llvm_build_dir=${llvm_root_dir}/build

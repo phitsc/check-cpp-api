@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-exe_name="check-cpp-api"
+set -ex
+
+source project-name.sh
+
+exe_name=$project_name
 
 if [ -f /root/clang-llvm/build/bin/${exe_name} ]
 then

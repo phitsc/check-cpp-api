@@ -2,7 +2,7 @@
 
 set -ex
 
-project_name="check-cpp-api"
+source project-name.sh
 
 unittests_dir="/root/clang-llvm/llvm/tools/clang/tools/extra/${project_name}/test/unittests"
 
