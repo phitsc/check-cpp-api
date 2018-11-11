@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
@@ -23,6 +23,8 @@ then
 fi
 
 cd ${unittests_build_dir}
+
+echo "Building unit tests for ${project_name}"
 
 cmake \
     -G Ninja \

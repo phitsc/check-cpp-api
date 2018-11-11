@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
@@ -30,6 +30,8 @@ grep -q -F "add_subdirectory(${project_name})" \
     ../llvm/tools/clang/tools/extra/CMakeLists.txt \
     || echo "add_subdirectory(${project_name})" \
     >> ../llvm/tools/clang/tools/extra/CMakeLists.txt
+
+echo "Building ${project_name}"
 
 cmake \
     -G Ninja \
