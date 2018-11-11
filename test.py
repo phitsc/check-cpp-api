@@ -5,6 +5,8 @@ from pathlib import Path
 from subprocess import call
 from helpers import resolve_path
 
+PROJECT_NAME = "check-cpp-api"
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -26,7 +28,7 @@ def main():
     args = parser.parse_args()
 
     if args.json or args.diff:
-        jsonFile = "/root/test_project/project1/builddir/check-cpp-api_results.json"
+        jsonFile = "/root/test_project/project1/builddir/{}_results.json".format(PROJECT_NAME)
     else:
         jsonFile = None
 
@@ -49,11 +51,11 @@ def main():
                 "diff",
                 str(
                     resolve_path(
-                        Path("test/project1/builddir/check-cpp-api_results.json")
+                        Path("test/project1/builddir/{}_results.json".format(PROJECT_NAME))
                     )
                 ),
                 str(
-                    resolve_path(Path("test/project1/json/check-cpp-api_results.json"))
+                    resolve_path(Path("test/project1/json/{}_results.json".format(PROJECT_NAME)))
                 ),
             ]
         )
