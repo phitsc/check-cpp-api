@@ -103,7 +103,7 @@ HeuristicsCheckAction::~HeuristicsCheckAction()
 }
 
 
-void HeuristicsCheckAction::run(const MatchFinder::MatchResult& result)
+void HeuristicsCheckAction::run(const clang::ast_matchers::MatchFinder::MatchResult& result)
 {
     if (const auto functionDecl = result.Nodes.getNodeAs<clang::FunctionDecl>("func_decl")) {
         for (const auto& heuristic : m_heuristics) {

@@ -5,9 +5,6 @@
 
 #include "clang/ASTMatchers/ASTMatchFinder.h"
 
-using namespace clang;
-using namespace clang::ast_matchers;
-
 #include <fstream>
 #include <memory>
 #include <vector>
@@ -17,12 +14,12 @@ std::string toString(const T* t)
 {
     std::string buffer;
     llvm::raw_string_ostream os(buffer);
-    t->print(os, PrintingPolicy(LangOptions()));
+    t->print(os, clang::PrintingPolicy(clang::LangOptions()));
     return os.str();
 }
 
 
-class HeuristicsCheckAction : public MatchFinder::MatchCallback
+class HeuristicsCheckAction : public clang::ast_matchers::MatchFinder::MatchCallback
 {
   public:
     HeuristicsCheckAction(Options options);
@@ -30,10 +27,12 @@ class HeuristicsCheckAction : public MatchFinder::MatchCallback
 
     auto matcher() const
     {
+        using namespace clang::ast_matchers;
+
         return functionDecl().bind("func_decl");
     }
 
-    virtual void run(const MatchFinder::MatchResult& result) override;
+    virtual void run(const clang::ast_matchers::MatchFinder::MatchResult& result) override;
 
 private:
     std::vector<Heuristic> m_heuristics;

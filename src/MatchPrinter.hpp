@@ -13,7 +13,7 @@ class MatchPrinter : public MatchFinder::MatchCallback
         for (const auto& node : result.Nodes.getMap()) {
             std::string buffer;
             llvm::raw_string_ostream os(buffer);
-            node.second.print(os, PrintingPolicy(LangOptions()));
+            node.second.print(os, clang::PrintingPolicy(clang::LangOptions()));
             llvm::outs() << node.first << ": " << os.str() << "\n";
         }
     }
