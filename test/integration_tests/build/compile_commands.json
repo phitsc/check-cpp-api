@@ -1,0 +1,13 @@
+[
+{
+  "directory": "/root/test_project/integration_tests/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/integration_tests.dir/src/main.cpp.o -c /root/test_project/integration_tests/src/main.cpp",
+  "file": "/root/test_project/integration_tests/src/main.cpp"
+},
+
+{
+  "directory": "/root/test_project/integration_tests/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/integration_tests.dir/src/TestClass.cpp.o -c /root/test_project/integration_tests/src/TestClass.cpp",
+  "file": "/root/test_project/integration_tests/src/TestClass.cpp"
+}
+]

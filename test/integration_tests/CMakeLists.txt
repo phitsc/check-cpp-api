@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(Project1)
+project(test-check-cpp-api)
 
-add_executable(Project1
+add_executable(test-check-cpp-api
 	src/main.cpp
 	src/TestClass.cpp
 )

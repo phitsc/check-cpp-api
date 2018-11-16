@@ -1,4 +1,4 @@
-#include "../../../src/DetermineCaseType.hpp"
+#include "DetermineCaseType.hpp"
 
 #include "../catch2/catch.hpp"
 

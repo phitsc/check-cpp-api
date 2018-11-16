@@ -21,8 +21,8 @@ source ${DIR}/docker-build.sh
 test_dir=/root/test_project
 mkdir -p ${test_dir}
 
-test_project_dir=${test_dir}/project1
-ln -sfn ${llvm_root_dir}/llvm/tools/clang/tools/extra/${project_name}/test/project1 ${test_project_dir}
+test_project_dir=${test_dir}/integration_tests
+ln -sfn ${llvm_root_dir}/llvm/tools/clang/tools/extra/${project_name}/test/integration_tests ${test_project_dir}
 
 echo "Running integration tests for ${project_name}"
 

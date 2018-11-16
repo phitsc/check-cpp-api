@@ -1,174 +1,174 @@
 {
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 11,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "invalid case type"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 12,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "invalid case type"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 13,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "invalid case type"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 16,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "abbreviation"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 17,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "abbreviation"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 18,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "abbreviation"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 19,
     "heuristic": "KCE-1",
     "guideline": 1,
     "message": "abbreviation"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 25,
     "heuristic": "KM-1",
     "guideline": 1,
     "message": "long function name"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 30,
     "heuristic": "KCE-2",
     "guideline": 2,
     "message": "boolean parameter"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 31,
     "heuristic": "KCE-2",
     "guideline": 2,
     "message": "boolean parameter"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 32,
     "heuristic": "KCE-2",
     "guideline": 2,
     "message": "boolean parameter"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 37,
     "heuristic": "KM-1",
     "guideline": 3,
     "message": "too many consecutive parameters of same type"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 38,
     "heuristic": "KM-1",
     "guideline": 3,
     "message": "too many consecutive parameters of same type"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 40,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 40,
     "heuristic": "KM-1",
     "guideline": 3,
     "message": "too many consecutive parameters of same type"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 47,
     "heuristic": "KCE-2",
     "guideline": 2,
     "message": "boolean parameter"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 47,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 50,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 53,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 56,
     "heuristic": "KCE-1",
     "guideline": 2,
     "message": "inconsistent ordering of in and out parameters"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 56,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 60,
     "heuristic": "KCE-1",
     "guideline": 2,
     "message": "inconsistent ordering of in and out parameters"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 60,
     "heuristic": "KCE-2",
     "guideline": 2,
     "message": "boolean parameter"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 60,
     "heuristic": "KM-1",
     "guideline": 2,
     "message": "too many parameters"
   },
   {
-    "file": "/root/test_project/project1/src/TestClass.hpp",
+    "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "line": 68,
     "heuristic": "RU-2",
     "guideline": 1,

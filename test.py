@@ -6,6 +6,7 @@ from subprocess import call
 from helpers import resolve_path
 
 PROJECT_NAME = "check-cpp-api"
+TEST_PROJECT_NAME = "integration_tests"
 
 
 def main():
@@ -21,14 +22,17 @@ def main():
         action="store_true",
     )
     parser.add_argument(
-        "-v", "--verbose",
+        "-v",
+        "--verbose",
         help="Be verbose when reporting violations",
         action="store_true",
     )
     args = parser.parse_args()
 
     if args.json or args.diff:
-        jsonFile = "/root/test_project/project1/builddir/{}_results.json".format(PROJECT_NAME)
+        jsonFile = "/root/test_project/{}/builddir/{}_results.json".format(
+            TEST_PROJECT_NAME, PROJECT_NAME
+        )
     else:
         jsonFile = None
 
@@ -38,8 +42,12 @@ def main():
         + (["-v"] if args.verbose else [])
         + [
             "-p",
-            str(resolve_path(Path("test/project1/builddir"))),
-            str(resolve_path(Path("test/project1/src/TestClass.cpp"))),
+            str(resolve_path(Path("test/{}/build".format(TEST_PROJECT_NAME)))),
+            str(
+                resolve_path(
+                    Path("test/{}/src/TestClass.cpp".format(TEST_PROJECT_NAME))
+                )
+            ),
         ]
     )
 
@@ -51,11 +59,21 @@ def main():
                 "diff",
                 str(
                     resolve_path(
-                        Path("test/project1/builddir/{}_results.json".format(PROJECT_NAME))
+                        Path(
+                            "test/{}/builddir/{}_results.json".format(
+                                TEST_PROJECT_NAME, PROJECT_NAME
+                            )
+                        )
                     )
                 ),
                 str(
-                    resolve_path(Path("test/project1/json/{}_results.json".format(PROJECT_NAME)))
+                    resolve_path(
+                        Path(
+                            "test/{}/json/{}_results.json".format(
+                                TEST_PROJECT_NAME, PROJECT_NAME
+                            )
+                        )
+                    )
                 ),
             ]
         )

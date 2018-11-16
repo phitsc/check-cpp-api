@@ -34,9 +34,9 @@
 
 ## Running check-cpp-api against the test project
 
-1. Change into *check-cpp-api/test/project1*.
+1. Change into *check-cpp-api/test/integration_tests*.
 
-        cd test/project1
+        cd test/integration_tests
 
 2. Create the *builddir* directory and change into it.
 
@@ -47,10 +47,10 @@
 
         cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
-    Make sure the *compile_commands.json* file has been created in the *project1/builddir* directory.
+    Make sure the *compile_commands.json* file has been created in the *integration_tests/builddir* directory.
 
 4. Change back into the *check-cpp-api* directory and run check-cpp-api.
 
         cd ../../..
-        python3 run.py -p test/project1/builddir test/project1/src/TestClass.cpp
+        python3 run.py -p test/integration_tests/builddir test/integration_tests/src/TestClass.cpp
 
