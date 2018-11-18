@@ -3,6 +3,8 @@
 #include "Heuristic.hpp"
 #include "Options.hpp"
 
+#include "../nlohmann/json.hpp"
+
 #include "clang/ASTMatchers/ASTMatchFinder.h"
 
 #include <fstream>
@@ -37,7 +39,6 @@ class HeuristicsCheckAction : public clang::ast_matchers::MatchFinder::MatchCall
 private:
     std::vector<Heuristic> m_heuristics;
     Options m_options;
-
-    std::unique_ptr<std::ofstream> m_file;
-    bool m_isFirstRecord = true;
+    nlohmann::json m_json;
+    std::unique_ptr<std::ofstream> m_ofstream;
 };

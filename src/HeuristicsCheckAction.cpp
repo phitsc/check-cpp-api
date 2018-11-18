@@ -1,6 +1,7 @@
 #include "HeuristicsCheckAction.hpp"
 #include "Heuristics.hpp"
 
+#include <iomanip>
 #include <experimental/filesystem>
 
 namespace fs = std::experimental::filesystem;
@@ -49,29 +50,22 @@ void printToConsole(
 
 
 void writeToJson(
-    std::ofstream& file,
+    nlohmann::json& json,
     const clang::SourceManager& sm,
     const Heuristic& heuristic,
     const FailedChecks& failedChecks,
-    bool onlyUserCode,
-    bool& isFirstRecord)
+    bool onlyUserCode)
 {
     for (const auto& fc : failedChecks) {
         if (!onlyUserCode || sm.getFileCharacteristic(fc.loc()) == clang::SrcMgr::C_User) {
-            if (isFirstRecord) {
-                isFirstRecord = false;
-            } else {
-                file << ",\n";
-            }
-
             const std::string filename = sm.getFilename(fc.loc());
-            file << "  {\n";
-            file << "    \"file\": \"" << filename << "\",\n";
-            file << "    \"line\": " << sm.getSpellingLineNumber(fc.loc()) << ",\n";
-            file << "    \"heuristic\": \"" << heuristic.id() << "\",\n";
-            file << "    \"guideline\": " << fc.guidelineId() << ",\n";
-            file << "    \"message\": \"" << fc.message() << "\"\n";
-            file << "  }";
+            json += {
+                { "file", filename },
+                { "guideline", fc.guidelineId() },
+                { "heuristic", heuristic.id() },
+                { "line", sm.getSpellingLineNumber(fc.loc()) },
+                { "message", fc.message() }
+            };
         }
     }
 }
@@ -84,11 +78,9 @@ HeuristicsCheckAction::HeuristicsCheckAction(Options options)
 {
     const auto filePath = m_options["json"].as<std::string>();
     if (!filePath.empty()) {
-        m_file = std::make_unique<std::ofstream>(filePath.c_str());
+        m_ofstream = std::make_unique<std::ofstream>(filePath.c_str());
 
-        if (m_file && m_file->is_open()) {
-            *m_file << "{\n";
-        } else {
+        if (!m_ofstream->is_open()) {
             llvm::errs() << "Error: failed to create " << filePath << "\n";
         }
     }
@@ -97,8 +89,8 @@ HeuristicsCheckAction::HeuristicsCheckAction(Options options)
 
 HeuristicsCheckAction::~HeuristicsCheckAction()
 {
-    if (m_file && m_file->is_open()) {
-        *m_file << "\n}";
+    if (m_ofstream->is_open()) {
+        *m_ofstream << std::setw(2) << m_json << std::endl;
     }
 }
 
@@ -110,14 +102,13 @@ void HeuristicsCheckAction::run(const clang::ast_matchers::MatchFinder::MatchRes
             const auto failedChecks = heuristic.check(*functionDecl, m_options);
 
             if (!failedChecks.empty()) {
-                if (m_file && m_file->is_open()) {
+                if (m_ofstream && m_ofstream->is_open()) {
                     writeToJson(
-                        *m_file,
+                        m_json,
                         *result.SourceManager,
                         heuristic,
                         failedChecks,
-                        true,
-                        m_isFirstRecord);
+                        true);
                 } else {
                     printToConsole(
                         *result.SourceManager,
