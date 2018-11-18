@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.11)
 
 set(LLVM_LINK_COMPONENTS support)
 
-set(PROJECT_NAME check-cpp-api)
+set(TARGET check-cpp-api)
 
-add_clang_executable(${PROJECT_NAME}
+add_clang_executable(${TARGET}
     src/Heuristic_KC_1.cpp
     src/Heuristic_KCE_1.cpp
     src/Heuristic_KCE_2.cpp
@@ -14,17 +14,25 @@ add_clang_executable(${PROJECT_NAME}
     src/main.cpp
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
+target_link_libraries(${TARGET} PRIVATE
     clangTooling
     clangBasic
     clangASTMatchers
     stdc++fs
 )
 
-target_compile_definitions(${PROJECT_NAME}
-    PRIVATE CLANG_BUILTIN_INCLUDES_DIR="${CLANG_BUILTIN_INCLUDES_DIR}")
+target_compile_definitions(${TARGET}
+    PRIVATE CLANG_BUILTIN_INCLUDES_DIR="${CLANG_BUILTIN_INCLUDES_DIR}"
+)
 
-target_compile_features(${PROJECT_NAME}
-    PRIVATE cxx_std_17)
+target_compile_features(${TARGET}
+    PRIVATE cxx_std_17
+)
 
 set (CMAKE_EXE_LINKER_FLAGS "-static-libstdc++")
+
+if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+    target_compile_options(${TARGET}
+        PRIVATE -Wno-covered-switch-default
+    )
+endif()
