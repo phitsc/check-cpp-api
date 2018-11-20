@@ -37,7 +37,7 @@ def main():
         jsonFile = None
 
     call_args = (
-        ["python3", "run.py"]
+        ["python3", "scripts/run.py"]
         + ([("-json " + jsonFile)] if jsonFile else [])
         + (["-v"] if args.verbose else [])
         + [
