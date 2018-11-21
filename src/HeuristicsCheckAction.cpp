@@ -89,7 +89,7 @@ HeuristicsCheckAction::HeuristicsCheckAction(Options options)
 
 HeuristicsCheckAction::~HeuristicsCheckAction()
 {
-    if (m_ofstream->is_open()) {
+    if (m_ofstream && m_ofstream->is_open()) {
         *m_ofstream << std::setw(2) << m_json << std::endl;
     }
 }
