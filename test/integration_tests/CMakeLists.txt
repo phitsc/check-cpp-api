@@ -4,5 +4,4 @@ project(test-check-cpp-api)
 
 add_executable(test-check-cpp-api
 	src/main.cpp
-	src/TestClass.cpp
 )
