@@ -5,7 +5,6 @@
 
 #include <clang/AST/Decl.h>
 #include <clang/AST/DeclCXX.h>
-#include <llvm/Support/Casting.h>
 
 namespace
 {
