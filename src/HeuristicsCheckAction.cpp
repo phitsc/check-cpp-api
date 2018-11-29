@@ -42,7 +42,7 @@ void printToConsole(
 
             if (beVerbose) {
                 llvm::outs()
-                    << ": " << fc.verboseMessage() << "\n";
+                    << " : " << fc.verboseMessage() << "\n";
             }
         }
     }
