@@ -70,9 +70,9 @@ cl::opt<CaseTypeOption> kc_1_1_case_type("kc-1-1-case-type",
     cl::cat(optionCategory)
 );
 
-constexpr const int km_1_1_init = 40;
+constexpr const int km_1_1_init = 30;
 static cl::opt<int> km_1_1_limit("km-1-1-limit",
-    cl::desc("Function name length limit (default: 40)"),
+    cl::desc("Function name length limit (default: 30)"),
     cl::init(km_1_1_init),
     cl::cat(optionCategory)
 );
