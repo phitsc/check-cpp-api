@@ -2,21 +2,21 @@
   {
     "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "guideline": 1,
-    "heuristic": "KCE-1",
+    "heuristic": "KC-1",
     "line": 11,
     "message": "invalid case type"
   },
   {
     "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "guideline": 1,
-    "heuristic": "KCE-1",
+    "heuristic": "KC-1",
     "line": 12,
     "message": "invalid case type"
   },
   {
     "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "guideline": 1,
-    "heuristic": "KCE-1",
+    "heuristic": "KC-1",
     "line": 13,
     "message": "invalid case type"
   },
@@ -135,7 +135,7 @@
   {
     "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "guideline": 2,
-    "heuristic": "KCE-1",
+    "heuristic": "KC-1",
     "line": 56,
     "message": "inconsistent ordering of in and out parameters"
   },
@@ -149,7 +149,7 @@
   {
     "file": "/root/test_project/integration_tests/src/TestClass.hpp",
     "guideline": 2,
-    "heuristic": "KCE-1",
+    "heuristic": "KC-1",
     "line": 60,
     "message": "inconsistent ordering of in and out parameters"
   },

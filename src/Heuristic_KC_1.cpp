@@ -72,7 +72,7 @@ CheckResult checkForConsistentParameterOrdering(const clang::FunctionDecl& funct
 Heuristic createHeuristic_KC_1()
 {
     return Heuristic(
-        "KCE-1", "The API should be consistent with itself",
+        "KC-1", "The API should be consistent with itself",
         {
             { 1, "Use consistent naming", &checkForConsistentNaming },
             { 2, "Use consistent parameter ordering", &checkForConsistentParameterOrdering },
