@@ -5,6 +5,7 @@
 using namespace clang;
 using namespace clang::ast_matchers;
 
+//! A MatchFinder callback that prints every match to stdout
 class MatchPrinter : public MatchFinder::MatchCallback
 {
   public:

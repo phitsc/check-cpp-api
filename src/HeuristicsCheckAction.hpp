@@ -20,13 +20,15 @@ std::string toString(const T* t)
     return os.str();
 }
 
-
+//! A MatchFinder callback for checking API usability heuristics
 class HeuristicsCheckAction : public clang::ast_matchers::MatchFinder::MatchCallback
 {
   public:
     HeuristicsCheckAction(Options options);
     ~HeuristicsCheckAction();
 
+    //! Returns the matcher declaration to be passed to
+    //! MatchFinder::addMatcher()
     auto matcher() const
     {
         using namespace clang::ast_matchers;

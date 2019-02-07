@@ -29,6 +29,9 @@ namespace boost
     }
 }
 
+// The objects defined in this anonymous namespace
+// define the command line arguments that will be
+// parsed by CommonOptionsParser.
 namespace {
 
 void printVersion(llvm::raw_ostream& ostream)
@@ -93,8 +96,9 @@ static cl::opt<int> km_1_3_limit("km-1-3-limit",
 // clang-format off
 
 static cl::extrahelp CommonHelp(CommonOptionsParser::HelpMessage);
-// static cl::extrahelp MoreHelp("\nMore help text...\n");
 
+// Helper function to add the command line options parsed by
+// CommonOptionsParser to our own Options object.
 template<typename T>
 void addOpt(Options& opts, const T& opt, OptionValue optInit = OptionValue())
 {
@@ -108,16 +112,15 @@ int main(int argc, const char** argv)
 {
     cl::SetVersionPrinter(&printVersion);
 
+    // Parse command line options
     CommonOptionsParser optionsParser(argc, argv, optionCategory);
 
+    // Instantiate the tool, passing the compilation database and
+    // source files to process
     ClangTool tool(optionsParser.getCompilations(), optionsParser.getSourcePathList());
 
-    // CLANG_BUILTIN_INCLUDES_DIR is defined in CMakeLists.txt
-    // const auto clangBuiltinIncludesDir = std::string("-I") + CLANG_BUILTIN_INCLUDES_DIR;
-    // tool.appendArgumentsAdjuster(getInsertArgumentAdjuster(clangBuiltinIncludesDir.c_str()));
-
-    // tool.appendArgumentsAdjuster(getInsertArgumentAdjuster("-Wno-gnu-include-next"));
-
+    // Instantiate our own Options object and initialize it
+    // with the parsed command line options
     Options options;
     addOpt(options, json, std::string());
     addOpt(options, verbose, false);
@@ -126,13 +129,21 @@ int main(int argc, const char** argv)
     addOpt(options, km_1_2_limit, km_1_2_init);
     addOpt(options, km_1_3_limit, km_1_3_init);
 
+    // Instantiate the MatchFinder object
     MatchFinder matchFinder;
 
-    // MatchPrinter matchPrinter;
-    // matchFinder.addMatcher(statementMatcher, &matchPrinter);
+    // The MatchPrinter matcher is useful for debugging
+    /*
+    MatchPrinter matchPrinter;
+    matchFinder.addMatcher(statementMatcher, &matchPrinter);
+    */
 
+    // Create and instance of the HeuristicsCheckAction that further
+    // delegates the checking to the Heuristic objects and add
+    // it to the matchFinder instance
     HeuristicsCheckAction heuristicsCheckAction(options);
     matchFinder.addMatcher(heuristicsCheckAction.matcher(), &heuristicsCheckAction);
 
+    // Finally, run the tool on the added matchers
     return tool.run(newFrontendActionFactory(&matchFinder).get());
 }

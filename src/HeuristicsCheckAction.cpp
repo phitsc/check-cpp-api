@@ -32,10 +32,10 @@ void printToConsole(
     bool beVerbose)
 {
     for (const auto& fc : failedChecks) {
-        const auto ploc = sm.getPresumedLoc(fc.loc());
+        const auto ploc = sm.getPresumedLoc(fc.sourceLocation());
 
         if (ploc.isValid() &&
-            (!onlyUserCode || sm.getFileCharacteristic(fc.loc()) == clang::SrcMgr::C_User)) {
+            (!onlyUserCode || sm.getFileCharacteristic(fc.sourceLocation()) == clang::SrcMgr::C_User)) {
             llvm::outs()
                 << ploc.getFilename() << ":" << ploc.getLine() << ": "
                 << heuristic.id() << "-" << fc.guidelineId() << ": " << fc.message() << "\n";
@@ -57,13 +57,13 @@ void writeToJson(
     bool onlyUserCode)
 {
     for (const auto& fc : failedChecks) {
-        if (!onlyUserCode || sm.getFileCharacteristic(fc.loc()) == clang::SrcMgr::C_User) {
-            const std::string filename = sm.getFilename(fc.loc());
+        if (!onlyUserCode || sm.getFileCharacteristic(fc.sourceLocation()) == clang::SrcMgr::C_User) {
+            const std::string filename = sm.getFilename(fc.sourceLocation());
             json += {
                 { "file", filename },
                 { "guideline", fc.guidelineId() },
                 { "heuristic", heuristic.id() },
-                { "line", sm.getSpellingLineNumber(fc.loc()) },
+                { "line", sm.getSpellingLineNumber(fc.sourceLocation()) },
                 { "message", fc.message() }
             };
         }

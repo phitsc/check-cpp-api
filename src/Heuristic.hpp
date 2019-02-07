@@ -1,3 +1,4 @@
+//! \file Heuristic.hpp
 #pragma once
 
 #include "CheckResult.hpp"
@@ -13,9 +14,16 @@ namespace clang {
 
 class Options;
 
+//!  A collection of Guideline objects
 using Guidelines = std::vector<Guideline>;
+
+//! A collection of CheckResult objects
 using FailedChecks = std::vector<CheckResult>;
 
+/*! A API usability heuristic
+
+    A Heuristic has a collection of \ref Guideline objects
+*/
 class Heuristic
 {
 public:
@@ -25,16 +33,20 @@ public:
         , m_guidelines(guidelines)
     {}
 
+    //! Returns this heuristic's identifier
     const std::string& id() const
     {
         return m_id;
     }
 
+    //! Returns this heuristic's description
     const std::string& description() const
     {
         return m_description;
     }
 
+    //! Runs this heuristic's checks
+    //! \returns A FailedChecks object containing information about the failed checks.
     FailedChecks check(const clang::FunctionDecl& functionDecl, const Options& options) const
     {
         FailedChecks failedChecks;
