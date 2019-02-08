@@ -9,6 +9,7 @@ using namespace clang::ast_matchers;
 class MatchPrinter : public MatchFinder::MatchCallback
 {
   public:
+    //! \private
     virtual void run(const MatchFinder::MatchResult& result) override
     {
         for (const auto& node : result.Nodes.getMap()) {

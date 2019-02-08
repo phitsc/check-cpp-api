@@ -23,13 +23,17 @@ using GuidelineCheckFunction = std::function<CheckResult(const clang::FunctionDe
 class Guideline
 {
 public:
+    //! Constructs a Guideline object
+    //! \param id The guideline's identifier
+    //! \param description The guideline's description
+    //! \param checkFunction The guideline's check function
     Guideline(
         int id,
         const std::string& description,
-        GuidelineCheckFunction checkFn)
+        GuidelineCheckFunction checkFunction)
         : m_id(id)
         , m_description(description)
-        , m_check(checkFn)
+        , m_check(checkFunction)
     {}
 
     //! Returns the guideline's identifier

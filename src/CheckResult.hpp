@@ -7,6 +7,7 @@
 class CheckResult
 {
 public:
+    //! Constructs and empty CheckResult object
     CheckResult() = default;
 
     //! Constructs a CheckResult object
@@ -24,6 +25,9 @@ public:
         , m_verboseMessage(verboseMessage)
     {}
 
+    //! Constructs a new CheckResult object from an existing CheckRresult
+    //! object, thereby initializingn the object's guideline identifier
+    //! to \c guidelineId
     CheckResult(const CheckResult& other, int guidelineId)
         : m_sourceLocation(other.sourceLocation())
         , m_message(other.message())
@@ -49,7 +53,7 @@ public:
         return m_verboseMessage;
     }
 
-    //! Returns the Guideline Id related to this check result
+    //! Returns the Guideline identifier related to this check result
     int guidelineId() const
     {
         return m_guidelineId;

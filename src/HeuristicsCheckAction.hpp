@@ -24,6 +24,8 @@ std::string toString(const T* t)
 class HeuristicsCheckAction : public clang::ast_matchers::MatchFinder::MatchCallback
 {
   public:
+    //! Constructs a HeuristicsCheckAction object
+    //! \param options An Options object holding the program arguments
     HeuristicsCheckAction(Options options);
     ~HeuristicsCheckAction();
 
@@ -36,6 +38,7 @@ class HeuristicsCheckAction : public clang::ast_matchers::MatchFinder::MatchCall
         return functionDecl().bind("func_decl");
     }
 
+    //! \private
     virtual void run(const clang::ast_matchers::MatchFinder::MatchResult& result) override;
 
 private:

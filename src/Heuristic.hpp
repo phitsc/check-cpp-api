@@ -27,6 +27,10 @@ using FailedChecks = std::vector<CheckResult>;
 class Heuristic
 {
 public:
+    //! Constructs a Heuristic object
+    //! \param id The heuristic's identifier
+    //! \param description The heuristic's description
+    //! \param guidelines The collection of Guideline objects to store in this heuristic
     Heuristic(const std::string& id, const std::string& description, Guidelines guidelines)
         : m_id(id)
         , m_description(description)
