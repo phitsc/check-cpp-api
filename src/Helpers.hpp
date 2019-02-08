@@ -52,9 +52,12 @@ inline bool isConst(const clang::QualType& type)
 //! A type used to differentiate between \a in and \a out parameters
 enum class InOutType
 {
-    Uninitialized, //! Neither an \a in nor an \a out parameters
-    In, //! An \a in parameter
-    Out //! An \a out parameter
+    //! Neither an \a in nor an \a out parameters
+    Uninitialized,
+    //! An \a in parameter
+    In,
+    //! An \a out parameter
+    Out
 };
 
 

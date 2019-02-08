@@ -1,7 +1,12 @@
+//! \file CaseType.h
 #pragma once
 
 #include <string>
 
+//! \addtogroup free_functions Free functions
+//! \{
+
+//! \private
 enum CaseTypeOption : int
 {
     camel,
@@ -10,15 +15,23 @@ enum CaseTypeOption : int
     snake
 };
 
+//! A type representing case types used in
+//! common programming naming conventions
 enum class CaseType : int
 {
+    //! camelCase
     Camel     = camel,
+    //! nHungarianNotation
     Hungarian = hungarian,
+    //! PascalCase
     Pascal    = pascal,
+    //! snake_case
     Snake     = snake,
+    //! None of the other case types
     Unknown
 };
 
+//! Converts from int to CaseType
 inline CaseType caseTypeFromInt(int value)
 {
     switch (value) {
@@ -30,6 +43,7 @@ inline CaseType caseTypeFromInt(int value)
     }
 }
 
+//! Converts from CaseType to std::string
 inline std::string toString(CaseType caseType)
 {
     switch (caseType) {
@@ -40,3 +54,5 @@ inline std::string toString(CaseType caseType)
         default: return "unknown";
     }
 }
+
+//! \}
