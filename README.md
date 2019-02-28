@@ -2,6 +2,16 @@
 
 [![Build Status](https://travis-ci.com/phitsc/check-cpp-api.svg?token=RqqkynutptY9gpoo5YZP&branch=master)](https://travis-ci.com/phitsc/check-cpp-api)
 
+## Try out check-cpp-api without building
+
+*check-cpp-api* can be tried out on the libbitcoin libraries using the *phitsc/check-libbitcoin-api* Docker image. On any system with Docker installed, run the following command to start a Bash shell in a Docker container based on the *phitsc/check-libbitcoin-api* Docker image.
+
+        docker run -it --rm phitsc/check-libbitcoin-api:1.3 /bin/bash
+
+Then, within the Bash shell in the newly started Docker container, run:
+
+        cd ~/libbitcoin-all
+        find . -name '*.hpp' -exec check-cpp-api -kc-1-1-case-type=snake {} +
 
 ## Build instructions
 
