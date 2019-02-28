@@ -34,11 +34,11 @@ Then, within the Bash shell in the newly started Docker container, run:
 
 2. Create the *libtooling* docker image for building Clang tools.
 
-        sudo docker build -t libtooling Docker
+        sudo docker build -t libtooling api-utils-common/Docker
 
 3. Run the make script.
 
-        python3 make.py
+        ./make
 
 # Using check-cpp-api
 
