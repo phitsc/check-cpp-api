@@ -29,7 +29,7 @@ Then, within the Bash shell in the newly started Docker container, run:
 
 1. Clone the *check-cpp-api* repository into a directory of your choice and change into that directory.
 
-        git clone https://github.com/phitsc/check-cpp-api.git
+        git clone --recursive https://github.com/phitsc/check-cpp-api.git
         cd check-cpp-api
 
 2. Create the *libtooling* docker image for building Clang tools.
@@ -62,5 +62,8 @@ Then, within the Bash shell in the newly started Docker container, run:
 4. Change back into the *check-cpp-api* directory and run check-cpp-api.
 
         cd ../../..
-        python3 run.py -p test/integration_tests/builddir test/integration_tests/src/TestClass.cpp
+        ./check-cpp-api -p test/integration_tests/builddir test/integration_tests/src/main.cpp
+
+    Note that ./checkk-cpp-api must be executed on the same host platform on which the compilation database was created, or the script will not be able to map the source file paths from the host filesystem to to container filesystem.
+
 
