@@ -64,6 +64,6 @@ Then, within the Bash shell in the newly started Docker container, run:
         cd ../../..
         ./check-cpp-api -p test/integration_tests/builddir test/integration_tests/src/main.cpp
 
-    Note that ./checkk-cpp-api must be executed on the same host platform on which the compilation database was created, or the script will not be able to map the source file paths from the host filesystem to to container filesystem.
+    Note that `./check-cpp-api` must be executed on the same host platform on which the compilation database was created or the script will not be able to map the source file paths from the host filesystem to to container filesystem.
 
 
