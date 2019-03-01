@@ -44,11 +44,11 @@ Then, within the Bash shell in the newly started Docker container, run:
 
 ## Running check-cpp-api against the test project
 
-1. Change into *check-cpp-api/test/integration_tests*.
+1. Change into `check-cpp-api/test/integration_tests`.
 
         cd test/integration_tests
 
-2. Create the *builddir* directory and change into it.
+2. Create the `builddir` directory and change into it.
 
         mkdir builddir
         cd builddir
@@ -57,13 +57,13 @@ Then, within the Bash shell in the newly started Docker container, run:
 
         cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
-    Make sure the *compile_commands.json* file has been created in the *integration_tests/builddir* directory.
+    Make sure the `compile_commands.json` file has been created in the `integration_tests/builddir` directory.
 
-4. Change back into the *check-cpp-api* directory and run check-cpp-api.
+4. Change back into the `check-cpp-api` directory and run *check-cpp-api*.
 
         cd ../../..
         ./check-cpp-api -p test/integration_tests/builddir test/integration_tests/src/main.cpp
 
-    Note that `./check-cpp-api` must be executed on the same host platform on which the compilation database was created or the script will not be able to map the source file paths from the host filesystem to to container filesystem.
+    Note that *check-cpp-api* must be executed on the same host platform on which the compilation database was created or the script will not be able to map the source file paths from the host filesystem to to container filesystem.
 
 
